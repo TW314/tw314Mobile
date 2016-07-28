@@ -2,4 +2,4 @@
 
 <h3>Versão do Android</h3>
 
-4.0.0 IceCreamSandwish
+4.0.0 IceCreamSandwich
