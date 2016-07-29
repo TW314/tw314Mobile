@@ -36,12 +36,10 @@
                 android:paddingLeft="20dp">
 
                 <EditText
-                    android:layout_width="246dp"
+                    android:layout_width="202dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText"
-                    android:text="Código Aqui"
-                    android:textAlignment="center"
-                    android:layout_weight="0.17" />
+                    android:textAlignment="center" />
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
