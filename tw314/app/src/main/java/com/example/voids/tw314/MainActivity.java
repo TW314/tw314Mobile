@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         );
+        
+        //Onde parei no curso de Android
+        //https://www.youtube.com/watch?v=Pm2Im-_Hu5A
 
+        //Curso de modelagem de telas para Android
+        //https://www.youtube.com/watch?v=eEU3t0x_pxQ&list=PLWz5rJ2EKKc8j2B95zGMb8muZvrIy-wcF
     }
 }
