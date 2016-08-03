@@ -14,22 +14,42 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="30dp">
 
-            <TableRow
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/para_acompanhar_o_processo_da_sua_senha_entre_com_o_c_digo_fornecido_no_campo_abaixo"
+                android:id="@+id/textView"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:paddingTop="30dp"
+                android:paddingLeft="20dp">
 
-                <TextView
+                <EditText
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/entradaCod"
+                    android:textAlignment="center" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/para_acompanhar_o_processo_da_sua_senha_entre_com_o_c_digo_fornecido_no_campo_abaixo"
-                    android:id="@+id/textView"
-                    android:textAlignment="center" />
-            </TableRow>
+                    android:id="@+id/btnInserirCodigo"
+                    android:layout_gravity="right"
+                    android:background="@android:drawable/ic_menu_send" />
+            </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
 
