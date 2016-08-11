@@ -1,7 +1,15 @@
 <resources>
-    <string name="app_name">TW314Mobile</string>
+    <string name="app_name">TW314</string>
     <string name="btn_access">Acessar</string>
     <string name="edt_access">Insira o seu código de acesso</string>
     <string name="img_logo">Logo do aplicativo</string>
     <string name="txt_access">Para acompanhar o processo da sua senha, entre com o código fornecido no campo abaixo</string>
+
+    <!-- Examples da tela principal
+         Retire/coloque o fecho do comentario para desativar os exemplos
+      -->
+    <string name="txt_ticket">Sua senha é: TW314</string>
+    <string name="txt_peopleCount">Há 1 pessoa na sua frente</string>
+    <string name="txt_service">Serviço: Ticket Web</string>
+    <!-- -->
 </resources>

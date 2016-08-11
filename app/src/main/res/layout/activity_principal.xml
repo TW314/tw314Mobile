@@ -2,4 +2,60 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/btnAddTicket"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/txtTicket"
+        android:layout_toEndOf="@+id/txtTicket" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_ticket"
+        android:id="@+id/txtTicket"
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_service"
+        android:id="@+id/txtService"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignBottom="@+id/btnAddTicket"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_peopleCount"
+        android:id="@+id/txtPeopleCount"
+        android:layout_above="@+id/btnAddTicket"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="97dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgHourglass"
+        android:contentDescription="@string/img_logo"
+        android:src="@drawable/logo_tw314"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/txtTicket"
+        android:layout_above="@+id/txtPeopleCount"
+        android:layout_alignLeft="@+id/txtPeopleCount"
+        android:layout_alignStart="@+id/txtPeopleCount"
+        android:layout_alignRight="@+id/txtPeopleCount"
+        android:layout_alignEnd="@+id/txtPeopleCount" />
+
 </RelativeLayout>
