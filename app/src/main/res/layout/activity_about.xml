@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgLogoAbout"
+        android:contentDescription="@string/img_logo"
+        android:src="@drawable/logo_tw314"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/txt_appVersion"
+        android:id="@+id/txtAppVersion"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:id="@+id/txtAppName"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
