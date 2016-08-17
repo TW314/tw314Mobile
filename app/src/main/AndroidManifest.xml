@@ -8,13 +8,22 @@
         android:label="TW314"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AcessoActivity">
+
+        <!-- ACTIVITY DA TELA DE ACESSO -->
+        <activity android:name=".AccessActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!-- ACTIVITY DA TELA PRINCIPAL         <activity android:name=".MainLayoutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> -->
+    </application>
 </manifest>
