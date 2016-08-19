@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_tw314_medio"
         android:label="TW314"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -18,12 +18,8 @@
             </intent-filter>
         </activity>
 
-        <!-- ACTIVITY DA TELA PRINCIPAL         <activity android:name=".MainLayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> -->
+        <!-- ACTIVITY DA TELA PRINCIPAL -->
+        <activity android:name=".MainLayoutActivity">
+        </activity>
     </application>
 </manifest>

@@ -17,22 +17,20 @@
         android:contentDescription="@string/img_logo"
         android:src="@drawable/logo_tw314_medio"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="230dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.50">
+            android:layout_width="370dp"
+            android:layout_height="match_parent">
 
             <EditText
-                android:layout_width="189dp"
+                android:layout_width="281dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtAccess"
                 android:hint="@string/edt_access"

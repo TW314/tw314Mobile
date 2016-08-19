@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgLogoAbout"
         android:contentDescription="@string/img_logo"
-        android:src="@drawable/logo_tw314"
+        android:src="@drawable/logo_tw314_medio"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp" />
 

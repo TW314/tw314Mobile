@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgHourglass"
         android:contentDescription="@string/img_logo"
-        android:src="@drawable/logo_tw314"
+        android:src="@drawable/logo_tw314_medio"
         android:layout_marginTop="52dp"
         android:layout_below="@+id/txtTicket"
         android:layout_above="@+id/txtPeopleCount"

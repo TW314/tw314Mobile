@@ -3,9 +3,8 @@
 
     <!-- Strings da activity de Acesso -->
     <string name="btn_access">Acessar</string>
-    <string name="edt_access">Insira o seu código de acesso</string>
+    <string name="edt_access">Insira o código aqui</string>
     <string name="img_logo">Logo do aplicativo</string>
-    <string name="txt_access">Para acompanhar o processo da sua senha, entre com o código fornecido no campo abaixo</string>
 
     <!-- Strings da activity Sobre -->
     <string name="txt_appVersion">TW314 v0.0.0</string>
