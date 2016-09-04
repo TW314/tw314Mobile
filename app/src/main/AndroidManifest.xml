@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tw314.tw314mobile">
-
+    <!-- android:theme="@style/AppTheme" -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_tw314_medio"
@@ -21,5 +21,14 @@
         <!-- ACTIVITY DA TELA PRINCIPAL -->
         <activity android:name=".MainLayoutActivity">
         </activity>
+
+        <!-- ACTIVITY DA TELA DE FAQ -->
+        <activity android:name=".FaqActivity">
+        </activity>
+
+        <!-- ACTIVITY DA TELA DE SOBRE -->
+        <activity android:name=".AboutActivity">
+        </activity>
     </application>
+
 </manifest>

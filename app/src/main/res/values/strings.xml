@@ -20,5 +20,6 @@
     <string name="txt_ticket">Sua senha é: TW314</string>
     <string name="txt_peopleCount">Há 1 pessoa na sua frente</string>
     <string name="txt_service">Serviço: Ticket Web</string>
+    <string name="title_activity_teste">TesteActivity</string>
     <!-- -->
 </resources>
