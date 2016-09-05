@@ -14,12 +14,12 @@
         android:contentDescription="@string/img_logo"
         android:src="@drawable/logo_tw314_medio"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="90dp" />
+        android:layout_marginTop="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearance"
         android:text="@string/txt_appVersion"
         android:id="@+id/txtAppVersion"
         android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearance"
         android:text="@string/txt_appRights"
         android:id="@+id/txtAppRights"
         android:layout_gravity="center_horizontal" />
@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/txt_contact"
         android:id="@+id/txtContact"
         android:layout_gravity="center_horizontal"
@@ -54,7 +54,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/txt_website"
         android:id="@+id/txtWebsite"
         android:layout_gravity="center_horizontal" />

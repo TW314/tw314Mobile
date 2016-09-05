@@ -16,10 +16,8 @@ public class FaqActivity extends ListActivity {
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);
 
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listQuestions()));
-        ListView listView = getListView();
     }
 
     private List<String> listQuestions() {
