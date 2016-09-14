@@ -2,41 +2,39 @@ package tw314.tw314mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 /**
  * Created by Pedro on 17/08/2016.
  */
-public class MainLayoutActivity extends AppCompatActivity {
-
-    Button about;
-    Button faq;
+public class MainLayoutActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        about = (Button) findViewById(R.id.about);
-        faq = (Button) findViewById(R.id.faq);
-
-        about.setOnClickListener(transition);
-        faq.setOnClickListener(transition);
     }
 
-    private View.OnClickListener transition = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            switch(v.getId()){
-                case R.id.about:
-                    startActivity(new Intent(MainLayoutActivity.this, AboutActivity.class));
-                    break;
-                case R.id.faq:
-                    startActivity(new Intent(MainLayoutActivity.this, FaqActivity.class));
-                    break;
-            }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.general_action, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.faq:
+                startActivity(new Intent(MainLayoutActivity.this, FaqActivity.class));
+                break;
+
+            case R.id.about:
+                startActivity(new Intent(MainLayoutActivity.this, AboutActivity.class));
+                break;
         }
-    };
+
+        return super.onOptionsItemSelected(item);
+    }
 }

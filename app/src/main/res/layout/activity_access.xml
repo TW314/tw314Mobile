@@ -17,7 +17,7 @@
         android:contentDescription="@string/img_logo"
         android:src="@drawable/logo_tw314_medio"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="90dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,11 +31,12 @@
             android:layout_height="match_parent" >
 
             <EditText
-                android:layout_width="189dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtAccess"
                 android:hint="@string/edt_access"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:layout_marginLeft="20dp" />
         </LinearLayout>
 
         <LinearLayout

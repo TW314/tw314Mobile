@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">TW314</string>
 
+    <!-- Strings do ActionOverflow -->
+    <string name="faq">FAQ</string>
+    <string name="about">Sobre</string>
+
     <!-- Strings da activity de Acesso -->
     <string name="btn_access">Acessar</string>
     <string name="edt_access">Insira o código aqui</string>

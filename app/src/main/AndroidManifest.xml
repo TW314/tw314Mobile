@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme">
 
         <!-- ACTIVITY DA TELA DE ACESSO -->
-        <activity android:name=".AccessActivity">
+        <activity android:name=".AccessActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
