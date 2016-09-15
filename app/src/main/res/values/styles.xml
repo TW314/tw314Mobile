@@ -14,6 +14,21 @@
         <!-- Fonte definida no projeto
         <item name="android:fontFamily">@</item>
         -->
-
     </style>
+
+    <!-- AboutActivity Theme. -->
+    <style name="AATheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <!-- Cores definidas no projeto -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorBackground</item>
+
+        <!-- Fonte definida no projeto
+        <item name="android:fontFamily">@</item>
+        -->
+    </style>
+
+
 </resources>

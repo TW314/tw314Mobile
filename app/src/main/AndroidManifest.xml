@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tw314.tw314mobile">
-    <!-- android:theme="@style/AppTheme" -->
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_tw314_medio"
         android:label="TW314"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true" >
 
         <!-- ACTIVITY DA TELA DE ACESSO -->
         <activity android:name=".AccessActivity"
@@ -20,15 +19,18 @@
         </activity>
 
         <!-- ACTIVITY DA TELA PRINCIPAL -->
-        <activity android:name=".MainLayoutActivity">
+        <activity android:name=".MainLayoutActivity"
+            android:theme="@style/AppTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE FAQ -->
-        <activity android:name=".FaqActivity">
+        <activity android:name=".FaqActivity"
+            android:theme="@style/AppTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE SOBRE -->
-        <activity android:name=".AboutActivity">
+        <activity android:name=".AboutActivity"
+            android:theme="@style/AATheme">
         </activity>
     </application>
 

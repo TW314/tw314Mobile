@@ -8,6 +8,7 @@
     <!-- Strings da activity de Acesso -->
     <string name="btn_access">Acessar</string>
     <string name="edt_access">Insira o código aqui</string>
+    <string name="txt_slogan">Cuide do seu tempo</string>
     <string name="img_logo">Logo do aplicativo</string>
 
     <!-- Strings da activity Sobre -->
