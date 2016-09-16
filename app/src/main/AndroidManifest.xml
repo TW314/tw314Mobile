@@ -26,6 +26,9 @@
         <!-- ACTIVITY DA TELA DE FAQ -->
         <activity android:name=".FaqActivity"
             android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
 
         <!-- ACTIVITY DA TELA DE SOBRE -->

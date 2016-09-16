@@ -3,11 +3,9 @@ package tw314.tw314mobile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -18,10 +16,13 @@ import java.util.List;
 /**
  * Created by Pedro on 04/09/2016.
  */
-public class FaqActivity extends ActionBarActivity {
+public class FaqActivity extends ActionBarActivity implements SearchView.OnQueryTextListener {
+
+    private List<String> listQuestions = Arrays.asList("Como adicionar uma nova senha?", "O que significam as cores da ampulheta?",
+            "Como configurar as notificações do aplicativo?", "Como saber quando serei chamado?",
+            "Como funciona o aplicativo?");
 
     ListView listView;
-    TextView view;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -30,7 +31,7 @@ public class FaqActivity extends ActionBarActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listQuestions()));
+        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listQuestions));
     }
 
     private List<String> listQuestions() {
@@ -55,45 +56,29 @@ public class FaqActivity extends ActionBarActivity {
             case R.id.about:
                 startActivity(new Intent(FaqActivity.this, AboutActivity.class));
                 break;
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public SearchView.OnQueryTextListener faqSearch = new SearchView.OnQueryTextListener() {
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-            query = query.toLowerCase();
-            view = (TextView) findViewById(R.id.resultView);
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        query = query.toLowerCase();
+        TextView view = (TextView) findViewById(R.id.resultView);
 
-            for (String question: listQuestions()){
-                if (question.contains(query)){
-                    String result = getString(R.string.results_found, query);
-                    view.setText(result);
-                    return true;
-                }
+        for (String question: listQuestions()){
+            if (question.contains(query)){
+                String result = getString(R.string.results_found, query);
+                view.setText(result);
+                return true;
             }
-
-            String result = getString(R.string.results_not_found, query);
-            return true;
         }
+        return false;
+    }
 
-        @Override
-        public boolean onQueryTextChange(String newText) {
-            newText = newText.toLowerCase();
-            view = (TextView) findViewById(R.id.resultView);
-
-            for (String question: listQuestions()){
-                if (question.contains(newText)){
-                    String result = getString(R.string.results_found, newText);
-                    view.setText(result);
-                    return true;
-                }
-            }
-
-            String result = getString(R.string.results_not_found, newText);
-            return true;
-        }
-    };
-
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 }
