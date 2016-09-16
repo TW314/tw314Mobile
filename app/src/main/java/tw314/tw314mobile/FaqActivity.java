@@ -18,10 +18,6 @@ import java.util.List;
  */
 public class FaqActivity extends ActionBarActivity implements SearchView.OnQueryTextListener {
 
-    private List<String> listQuestions = Arrays.asList("Como adicionar uma nova senha?", "O que significam as cores da ampulheta?",
-            "Como configurar as notificações do aplicativo?", "Como saber quando serei chamado?",
-            "Como funciona o aplicativo?");
-
     ListView listView;
 
     @Override
@@ -31,7 +27,7 @@ public class FaqActivity extends ActionBarActivity implements SearchView.OnQuery
 
         listView = (ListView) findViewById(R.id.listView);
 
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listQuestions));
+        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listQuestions()));
     }
 
     private List<String> listQuestions() {
