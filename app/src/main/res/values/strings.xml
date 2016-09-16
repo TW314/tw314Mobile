@@ -18,7 +18,13 @@
     <string name="txt_website">Site: tw314.pythonanywhere.com</string>
 
     <!-- Strings da activity FAQ -->
-    <string name="edt_search">Pesquisar</string>
+    <string name="search">Pesquisar</string>
+    <string name="results_found">
+        Results found: <b>%s</b>
+    </string>
+    <string name="results_not_found">
+        Results not found: <b>%s</b>
+    </string>
 
     <!-- Example Strings da tela principal
          Retire/coloque o fecho do comentario dessa linha para desativar os exemplos -->

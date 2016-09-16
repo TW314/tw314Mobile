@@ -19,7 +19,7 @@ public class AboutActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.general_action, menu);
+        getMenuInflater().inflate(R.menu.main_action, menu);
         return true;
     }
 

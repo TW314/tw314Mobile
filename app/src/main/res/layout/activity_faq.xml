@@ -7,16 +7,17 @@
     android:weightSum="1"
     tools:context=".FaqActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/edt_search"
-        android:id="@+id/edtSearch" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/resultView"
+        android:layout_gravity="center_horizontal" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:layout_gravity="center_horizontal" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
