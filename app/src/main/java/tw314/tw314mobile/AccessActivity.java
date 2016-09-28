@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class AccessActivity extends AppCompatActivity {
 
-    Button btnAccess;
+    private Button btnAccess;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

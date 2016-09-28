@@ -1,45 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/txt_ticket"
-        android:id="@+id/txtTicket"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center_horizontal" />
+    <!-- Frame que divide a TelaPrincipal -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <!-- Layout da Tela Principal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgHourglass"
-        android:contentDescription="@string/img_logo"
-        android:src="@drawable/logo_tw314_medio"
-        android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="27sp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/txt_ticket"
+                android:id="@+id/txtTicket"
+                android:layout_marginTop="60dp"
+                android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/txt_peopleCount"
-        android:id="@+id/txtPeopleCount"
-        android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgHourglass"
+                android:contentDescription="@string/img_logo"
+                android:src="@drawable/status1_tranquilo"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_service"
-        android:id="@+id/txtService"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_gravity="right"
-        android:layout_marginTop="80dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/txt_peopleCount"
+                android:id="@+id/txtPeopleCount"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/txt_service"
+                android:id="@+id/txtService"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="80dp" />
+        </LinearLayout>
+        <!-- Fim do Layout Principal -->
+    </FrameLayout>
+    <!-- Fim da divisao do Frame -->
 
-</LinearLayout>
+    <!-- Lista que preenche o NavDrawerMenu -->
+    <ListView
+        android:id="@+id/nav_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimary"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
+    <!-- Fim da Lista do NavDrawerMenu -->
+</android.support.v4.widget.DrawerLayout>

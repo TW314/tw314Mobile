@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/img_logo"
-        android:src="@drawable/logo_tw314_medio"
+        android:src="@drawable/logo_tw314_access"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp" />
 

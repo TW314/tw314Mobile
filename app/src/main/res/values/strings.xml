@@ -26,11 +26,17 @@
         Results not found: <b>%s</b>
     </string>
 
+    <!-- Opcoes do NavDrawer -->
+    <string name="drawer_open">Abre NavDrawer</string>
+    <string name="drawer_close">Fecha NavDrawer</string>
+
     <!-- Example Strings da tela principal
          Retire/coloque o fecho do comentario dessa linha para desativar os exemplos -->
-    <string name="txt_ticket">Sua senha é: TW314</string>
+    <string name="txt_ticket">Sua senha: TW314</string>
+    <string name="txt_ticket2">TW314</string>
     <string name="txt_peopleCount">Há 1 pessoa na sua frente</string>
     <string name="txt_service">Serviço: Ticket Web</string>
+    <string name="txt_service2">Ticket Web</string>
     <string name="title_activity_teste">TesteActivity</string>
     <!-- -->
 </resources>

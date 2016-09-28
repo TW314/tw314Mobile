@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class FaqActivity extends ActionBarActivity implements SearchView.OnQueryTextListener {
 
-    ListView listView;
+    private ListView listView;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -52,7 +52,6 @@ public class FaqActivity extends ActionBarActivity implements SearchView.OnQuery
             case R.id.about:
                 startActivity(new Intent(FaqActivity.this, AboutActivity.class));
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);
