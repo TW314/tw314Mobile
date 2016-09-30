@@ -4,6 +4,7 @@
     android:layout_height="@dimen/navigation_header"
     android:background="@color/colorPrimaryVariant">
 
+    <!-- Logo e nome lado a lado -->
     <ImageView
         android:paddingTop="20dp"
         android:layout_width="match_parent"
@@ -11,6 +12,7 @@
         android:src="@drawable/logo_tw314_drawer2"
         android:foregroundGravity="center"/>
 
+    <!-- Senha -->
     <TextView
         android:paddingTop="20dp"
         android:layout_gravity="center"
@@ -20,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <!-- Servico -->
     <TextView
         android:layout_gravity="center"
         android:textColor="@color/colorBackground"
