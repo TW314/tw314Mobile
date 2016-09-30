@@ -3,23 +3,25 @@ package tw314.tw314mobile;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainLayoutActivity extends ActionBarActivity {
 
-    //Atributo do NavDrawerLayout
+    // Atributo do NavDrawerLayout
     private DrawerLayout mDrawerLayout;
-    //Lista de itens do menu
-    private ListView mDrawerList;
-    //Atributo que coordena abrir e fechar do NavDrawer
+    // Atributo que coordena abrir e fechar do NavDrawer
     private ActionBarDrawerToggle mDrawerToggle;
+    // Atributo que responde acoes do menu
+    private NavigationView mNavView;
+    // Atributo que controla chamada das Activities no NavDrawer
+    private Intent navIntent;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -28,16 +30,10 @@ public class MainLayoutActivity extends ActionBarActivity {
 
         // Inicializa compontenes do NavDrawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        /*
-        mDrawerList = (ListView) findViewById(R.id.nav_drawer);
+        mNavView = (NavigationView) findViewById(R.id.navigation_menu);
 
-        // Inicializa adapter do menu passando Lista Estatica
-        adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item, DrawerList.getDataList());
-        mDrawerList.setAdapter(adapter);
-
-        // Seta ItemClickListener para identificar cliques na lista
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        */
+        // Inicializa resposta aos cliques dos itens do NavDrawer
+        mNavView.setNavigationItemSelectedListener(mNavDrawerClick);
 
         // Inicializa Toggle (abertura e fechamento do Drawer)
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close){
@@ -54,58 +50,13 @@ public class MainLayoutActivity extends ActionBarActivity {
             }
         };
 
-        // Seta resposta do DrawerLayout ao Toggle
+        // Seta resposta do DrawerLayout ao Toggle (Abrir e Fechar)
         mDrawerLayout.addDrawerListener(mDrawerToggle);
 
         // Seta icone de lista e efeito de transicao de icones para true
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
-
-    // Metodo que controla ações do NavDrawer
-    public void SelectItem(int position){
-
-        // TODO: Usar Intent para instanciar no Switch qual Activity deve ser chamada, fazer chamada no fim do método
-        // Intent intent = null;
-
-        switch(position){
-            // Ticket
-            case 2:
-                // TODO: Adicionar chamada da Activity de Adicionar Senha
-                Toast.makeText(MainLayoutActivity.this, "Adicionar Senha selecionado", Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
-                // TODO: Adicionar chamada da Activity de Visualizar Lista de Senhas
-                Toast.makeText(MainLayoutActivity.this, "Visualizar Lista de Senhas selecionado", Toast.LENGTH_SHORT).show();
-                break;
-            case 4:
-                // TODO: Adicionar função de Desistir da Fila
-                Toast.makeText(MainLayoutActivity.this, "Desistir da Fila selecionado", Toast.LENGTH_SHORT).show();
-                break;
-
-            // Configuracoes
-            case 6:
-                // TODO: Adicionar configuração de Desativar Notificações
-                Toast.makeText(MainLayoutActivity.this, "Desativar Notificações selecionado", Toast.LENGTH_SHORT).show();
-                break;
-            case 7:
-                // TODO: Adicionar chamada da Activity de Configurar Notificações
-                Toast.makeText(MainLayoutActivity.this, "Configurar Notificações selecionado", Toast.LENGTH_SHORT).show();
-                break;
-
-            // Outros
-            case 9:
-                // TODO: Adicionar funçao de fechar APP
-                Toast.makeText(MainLayoutActivity.this, "Sair selecionado", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
-
-        mDrawerList.setItemChecked(position, false);
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }
-
 
     // Override para criar ActionBar com ActionOverflow
     @Override
@@ -134,6 +85,53 @@ public class MainLayoutActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    // Metodo/Propriedade de resposta aos cliques do NavDrawer
+    private NavigationView.OnNavigationItemSelectedListener mNavDrawerClick = new NavigationView.OnNavigationItemSelectedListener(){
+        // Opcoes do NavDrawer
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            switch(item.getItemId()){
+                // Adicionar Senha
+                case R.id.add_ticket:
+                    // TODO: Adicionar Intent para AddTicketActivity
+                    // navIntent = new Intent(MainLayoutActivity.this, AddTicketActivity);
+                    Toast.makeText(MainLayoutActivity.this, "Adicionar Senha selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                // Ver Lista de Senhas
+                case R.id.ticket_list:
+                    // TODO: Adicionar Intent para TicketListActivity
+                    // navIntent = new Intent(MainLayoutActivity.this, TicketListActivity);
+                    Toast.makeText(MainLayoutActivity.this, "Visualizar Senhas selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                // Desistir da Fila
+                case R.id.give_queue_up:
+                    // TODO: Adicionar acoes para desistir da fila
+                    Toast.makeText(MainLayoutActivity.this, "Desistir da Fila selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                // Desativar Notificacoes
+                case R.id.disable_notification:
+                    // TODO: Adicionar acoes para desativar notificacoes
+                    Toast.makeText(MainLayoutActivity.this, "Desativar Notificacoes selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                // Configuracoes
+                case R.id.settings:
+                    // TODO: Adicionar Intent para SettingsActivity
+                    Toast.makeText(MainLayoutActivity.this, "Configurações selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.exit:
+                    // TODO: Adiconar acao para sair do app
+                    Toast.makeText(MainLayoutActivity.this, "Sair selecionado", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+
+            // TODO: Adicionar chamada para Activity definida no Switch
+            // startActivity(navIntent);
+            return false;
+        }
+    };
 
     // Overrides padrao do NavDrawer
     @Override
