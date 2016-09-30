@@ -6,16 +6,15 @@
     <string name="about">Sobre o app</string>
 
     <!-- Strings da activity de Acesso -->
-    <string name="btn_access">Acessar</string>
-    <string name="edt_access">Insira o código aqui</string>
-    <string name="txt_slogan">Cuide do seu tempo</string>
-    <string name="img_logo">Logo do aplicativo</string>
+    <string name="access_hint">Insira o código aqui</string>
+    <string name="project_slogan">Cuide do seu tempo</string>
+    <string name="logo_descript">Logo do aplicativo</string>
 
     <!-- Strings da activity Sobre -->
-    <string name="txt_appVersion">TW314 v0.0.0</string>
-    <string name="txt_appRights">Todos os direitos reservados</string>
-    <string name="txt_contact">Contato: contato@tw314.com</string>
-    <string name="txt_website">Site: tw314.pythonanywhere.com</string>
+    <string name="app_version">TW314 v0.0.0</string>
+    <string name="app_rights">Todos os direitos reservados</string>
+    <string name="contact">Contato: contato@tw314.com</string>
+    <string name="website">Site: tw314.pythonanywhere.com</string>
 
     <!-- Strings da activity FAQ -->
     <string name="search">Pesquisar</string>

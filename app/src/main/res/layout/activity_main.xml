@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgHourglass"
-            android:contentDescription="@string/img_logo"
+            android:contentDescription="@string/logo_descript"
             android:src="@drawable/status1_tranquilo"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp" />

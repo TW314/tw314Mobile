@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/img_logo"
+        android:contentDescription="@string/logo_descript"
         android:src="@drawable/logo_tw314_access"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp" />
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearance"
-        android:text="@string/txt_appVersion"
+        android:text="@string/app_version"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp" />
 
@@ -37,14 +37,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearance"
-        android:text="@string/txt_appRights"
+        android:text="@string/app_rights"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_contact"
+        android:text="@string/contact"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp" />
 
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/txt_website"
+        android:text="@string/website"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

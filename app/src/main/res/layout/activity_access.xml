@@ -11,25 +11,27 @@
     android:background="@color/colorPrimary"
     tools:context=".AccessActivity">
 
+    <!-- Logo do TW314 -->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgLogo"
-        android:contentDescription="@string/img_logo"
+        android:contentDescription="@string/logo_descript"
         android:src="@drawable/logo_tw314_access"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="90dp" />
 
+    <!-- Slogan do TW314 -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:text="@string/txt_slogan"
+        android:text="@string/project_slogan"
         android:textColor="@color/colorBackground"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp" />
 
+    <!-- Componentes de entrada -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,12 +43,13 @@
             android:id="@+id/access_code"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:hint="@string/edt_access"
+            android:hint="@string/access_hint"
             android:layout_gravity="right"
             android:layout_marginLeft="30dp"
             android:textColorHint="@color/colorBackground"
             android:fitsSystemWindows="true" />
 
+        <!-- Botao Circular, usa Drawable circle -->
         <Button
             android:id="@+id/acces_button"
             android:layout_marginLeft="10dp"
