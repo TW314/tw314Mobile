@@ -17,7 +17,7 @@
     </style>
 
     <!-- AboutActivity Theme. -->
-    <style name="AATheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="PresentationTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
 
         <!-- Cores definidas no projeto -->

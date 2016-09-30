@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Itens do Menu -->
+    <!-- Adicionar Senha -->
+    <item
+        android:id="@+id/add_ticket"
+        android:icon="@mipmap/ic_add_white_24dp"
+        android:title="@string/add_ticket"/>
+    <!-- Lista de Senhas -->
+    <item
+        android:id="@+id/ticket_list"
+        android:icon="@mipmap/ic_list_white_24dp"
+        android:title="@string/ticket_list"/>
+    <!-- Desistir da Fila -->
+    <item
+        android:id="@+id/give_queue_up"
+        android:icon="@mipmap/ic_clear_white_24dp"
+        android:title="@string/give_queue_up"/>
+    <!-- Desativar Notificacoes -->
+    <item
+        android:id="@+id/disable_notification"
+        android:icon="@mipmap/ic_alarm_off_white_24dp"
+        android:title="@string/disable_notification"/>
+    <!-- Configuracoes -->
+    <item
+        android:id="@+id/settings"
+        android:icon="@mipmap/ic_settings_white_24dp"
+        android:title="@string/settings"/>
+    <!-- Sair -->
+    <item
+        android:id="@+id/exit"
+        android:icon="@mipmap/ic_subdirectory_arrow_left_white_24dp"
+        android:title="@string/exit"/>
+</menu>

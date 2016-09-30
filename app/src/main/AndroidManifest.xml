@@ -10,7 +10,7 @@
 
         <!-- ACTIVITY DA TELA DE ACESSO -->
         <activity android:name=".AccessActivity"
-            android:theme="@style/AATheme">
+            android:theme="@style/PresentationTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,7 @@
 
         <!-- ACTIVITY DA TELA DE SOBRE -->
         <activity android:name=".AboutActivity"
-            android:theme="@style/AATheme">
+            android:theme="@style/PresentationTheme">
         </activity>
     </application>
 

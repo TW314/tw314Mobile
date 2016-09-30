@@ -9,16 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-// Package do NavDrawer
-import tw314.drawer.*;
-
-/**
- * Created by Pedro on 17/08/2016.
- */
 public class MainLayoutActivity extends ActionBarActivity {
 
     //Atributo do NavDrawerLayout
@@ -27,8 +20,6 @@ public class MainLayoutActivity extends ActionBarActivity {
     private ListView mDrawerList;
     //Atributo que coordena abrir e fechar do NavDrawer
     private ActionBarDrawerToggle mDrawerToggle;
-    //Adapter da lista de itens
-    CustomDrawerAdapter adapter;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -37,6 +28,7 @@ public class MainLayoutActivity extends ActionBarActivity {
 
         // Inicializa compontenes do NavDrawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*
         mDrawerList = (ListView) findViewById(R.id.nav_drawer);
 
         // Inicializa adapter do menu passando Lista Estatica
@@ -45,10 +37,7 @@ public class MainLayoutActivity extends ActionBarActivity {
 
         // Seta ItemClickListener para identificar cliques na lista
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        // Seta icone de lista e efeito de transicao de icones para true
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        */
 
         // Inicializa Toggle (abertura e fechamento do Drawer)
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close){
@@ -66,7 +55,11 @@ public class MainLayoutActivity extends ActionBarActivity {
         };
 
         // Seta resposta do DrawerLayout ao Toggle
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        // Seta icone de lista e efeito de transicao de icones para true
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     // Metodo que controla ações do NavDrawer
@@ -155,15 +148,5 @@ public class MainLayoutActivity extends ActionBarActivity {
         super.onConfigurationChanged(newConfig);
         // Passa todas as mudancas de configuracao para o Drawer
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    // Classe que controla cliques no NavDrawer
-    // Passa para o SelectItem qual item da lista foi selecionado
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (DrawerList.getDataList().get(position).getTitle() == null)
-                SelectItem(position);
-        }
     }
 }

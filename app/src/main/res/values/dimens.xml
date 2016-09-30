@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Tamanho do cabecalho -->
-    <dimen name="activity_header">57dp</dimen>
+    <!-- Tamanho do NavDrawer -->
+    <dimen name="navigation_drawer">240dp</dimen>
+    <dimen name="navigation_header">140dp</dimen>
 </resources>

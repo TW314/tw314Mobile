@@ -29,6 +29,13 @@
     <!-- Opcoes do NavDrawer -->
     <string name="drawer_open">Abre NavDrawer</string>
     <string name="drawer_close">Fecha NavDrawer</string>
+    <string name="add_ticket">Adicionar Senha</string>
+    <string name="ticket_list">Visualizar Senhas</string>
+    <string name="give_queue_up">Desistir da Fila</string>
+    <string name="disable_notification">Desativar Notificações</string>
+    <string name="settings">Configurações</string>
+    <string name="exit">Sair</string>
+
 
     <!-- Example Strings da tela principal
          Retire/coloque o fecho do comentario dessa linha para desativar os exemplos -->
