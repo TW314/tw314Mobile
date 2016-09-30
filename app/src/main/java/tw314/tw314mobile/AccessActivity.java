@@ -14,7 +14,7 @@ public class AccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access);
 
-        btnAccess = (Button) findViewById(R.id.btnAccess);
+        btnAccess = (Button) findViewById(R.id.acces_button);
         btnAccess.setOnClickListener(btnAccessClick);
     }
 

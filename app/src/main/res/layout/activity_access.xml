@@ -38,22 +38,25 @@
         android:layout_marginTop="37dp">
 
         <EditText
+            android:id="@+id/access_code"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edtAccess"
+            android:layout_height="50dp"
             android:hint="@string/edt_access"
             android:layout_gravity="right"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="0.06"
+            android:layout_marginLeft="30dp"
             android:textColorHint="@color/colorBackground"
             android:fitsSystemWindows="true" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_access"
-            android:id="@+id/btnAccess"
-            android:textColor="@color/colorBackground" />
+            android:id="@+id/acces_button"
+            android:layout_marginLeft="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@mipmap/ic_send_white_24dp"
+            android:paddingTop="13dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="4dp"
+            android:background="@drawable/circle" />
 
     </LinearLayout>
 
