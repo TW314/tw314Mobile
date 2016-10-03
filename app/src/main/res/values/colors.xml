@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Cores do Tema do App -->
     <color name="colorPrimary">#EE692E</color>
     <color name="colorPrimaryVariant">#EE4D2E</color>
     <color name="colorPrimaryDark">#000000</color>
@@ -9,4 +10,11 @@
     <color name="colorText">#564949</color>
     <color name="colorAlert">#DB3D34</color>
     <color name="colorSuccess">#16A068</color>
+
+    <!-- Cores da Ampulheta -->
+    <color name="calling">#DB3D34</color>
+    <color name="attention">#EE4D2E</color>
+    <color name="warning">#FFCE20</color>
+    <color name="alert">#007892</color>
+    <color name="calmdown">#16A068</color>
 </resources>
