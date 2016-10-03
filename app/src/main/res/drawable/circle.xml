@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
+    <!-- Forma que define o botao circular -->
+    <!-- Beiradas -->
     <corners android:radius="1000dp" />
+    <!-- Cor principal -->
     <solid android:color="@color/colorAccent" />
+    <!-- Cor e espessura de traco -->
     <stroke
         android:width="2dip"
         android:color="@color/colorAccent" />
+    <!-- Padding de conteudo -->
     <padding
         android:bottom="4dp"
         android:left="4dp"
