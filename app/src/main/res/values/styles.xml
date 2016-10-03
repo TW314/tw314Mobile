@@ -16,7 +16,7 @@
         -->
     </style>
 
-    <!-- AboutActivity Theme. -->
+    <!-- Presentation theme. -->
     <style name="PresentationTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
 

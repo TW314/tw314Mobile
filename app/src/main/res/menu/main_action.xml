@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
+    <!-- ActionOverflow -->
+    <!-- Item de Perguntas Frequentes -->
     <item
         android:id="@+id/faq"
         android:orderInCategory="100"
         android:title="@string/faq"
         app:showAsAction="never" />
-
+    <!-- Item de Sobre o App -->
     <item
         android:id="@+id/about"
         android:orderInCategory="100"

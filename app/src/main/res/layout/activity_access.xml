@@ -51,7 +51,7 @@
 
         <!-- Botao Circular, usa Drawable circle -->
         <Button
-            android:id="@+id/acces_button"
+            android:id="@+id/access_button"
             android:layout_marginLeft="10dp"
             android:layout_width="50dp"
             android:layout_height="50dp"

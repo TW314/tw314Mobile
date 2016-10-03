@@ -17,14 +17,13 @@
             android:textSize="27sp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/txt_ticket"
-            android:id="@+id/txtTicket"
             android:layout_marginTop="60dp"
             android:layout_gravity="center_horizontal" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imgHourglass"
+            android:id="@+id/hourglass"
             android:contentDescription="@string/logo_descript"
             android:src="@drawable/status1_tranquilo"
             android:layout_gravity="center_horizontal"
@@ -35,7 +34,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/txt_peopleCount"
-            android:id="@+id/txtPeopleCount"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp" />
 
@@ -44,7 +42,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/txt_service"
-            android:id="@+id/txtService"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="15dp"
             android:layout_gravity="right"
