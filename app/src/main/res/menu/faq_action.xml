@@ -2,19 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
+    <!-- ActionBar -->
+    <!-- Item de Pesquisa -->
     <item
         android:id="@+id/faq_search"
         android:icon="@mipmap/ic_search_white_48dp"
         android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
-
+    <!-- ActionOverflow -->
+    <!-- Item de Perguntas Frequentes -->
     <item
         android:id="@+id/faq"
         android:orderInCategory="100"
         android:title="@string/faq"
         app:showAsAction="never" />
-
+    <!-- Item de Sobre o App -->
     <item
         android:id="@+id/about"
         android:orderInCategory="100"
