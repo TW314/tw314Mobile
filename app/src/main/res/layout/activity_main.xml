@@ -131,20 +131,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:orientation="vertical"
                     android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@string/service_presentation" />
+                        android:text="@string/service_presentation"
+                        android:textAppearance="?android:attr/textAppearance"
+                        android:gravity="center" />
 
                     <TextView
                         android:id="@+id/service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/service"
                         android:textStyle="bold"
                         android:textColor="@color/colorAccent"
