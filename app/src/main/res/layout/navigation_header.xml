@@ -18,7 +18,7 @@
         android:layout_gravity="center"
         android:textColor="@color/colorBackground"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
-        android:text="@string/txt_ticket"
+        android:text="@string/ticket_presentation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -27,7 +27,7 @@
         android:layout_gravity="center"
         android:textColor="@color/colorBackground"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
-        android:text="@string/txt_service"
+        android:text="@string/service_presentation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

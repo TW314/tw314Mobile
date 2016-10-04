@@ -6,20 +6,41 @@
     android:layout_height="match_parent">
 
     <!-- Layout da Tela Principal -->
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:stretchColumns="0,1,2">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Linha do Ticket -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="27sp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/txt_ticket"
-            android:layout_marginTop="60dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket_presentation"
+                android:textSize="25sp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <!-- TextView com Ticket -->
+            <TextView
+                android:id="@+id/ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket"
+                android:textSize="27sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginLeft="6dp"/>
+        </LinearLayout>
+
+        <!-- Ampulheta -->
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,26 +48,109 @@
             android:contentDescription="@string/logo_descript"
             android:src="@drawable/status1_tranquilo"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="23dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Linha da Quantidade de Senhas -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/txt_peopleCount"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="23dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/txt_service"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="15dp"
-            android:layout_gravity="right"
-            android:layout_marginTop="80dp" />
-    </LinearLayout>
+            <!-- TextView com Quantidade de Senhas -->
+            <TextView
+                android:id="@+id/ticket_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket_count"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_presentation"
+                android:textSize="25sp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginLeft="6dp" />
+        </LinearLayout>
+
+        <!-- Linha de Senha Chamada no Estabelecimento | Empresa e Servico de senha do usuario -->
+        <TableRow
+            android:layout_marginTop="23dp"
+            android:layout_gravity="center">
+            <!-- Coluna de Senha Chamada -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/last_ticket_presentation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/last_ticket"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <!-- Coluna de Empresa e Serviço -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/establishment"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <!-- Linha de Servico -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="@string/service_presentation" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/service"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+            </LinearLayout>
+        </TableRow>
+
+    </TableLayout>
     <!-- Fim do Layout Principal -->
 
     <!-- NavigationDrawer -->

@@ -38,11 +38,14 @@
 
     <!-- Example Strings da tela principal
          Retire/coloque o fecho do comentario dessa linha para desativar os exemplos -->
-    <string name="txt_ticket">Sua senha: TW314</string>
-    <string name="txt_ticket2">TW314</string>
-    <string name="txt_peopleCount">Há 1 pessoa na sua frente</string>
-    <string name="txt_service">Serviço: Ticket Web</string>
-    <string name="txt_service2">Ticket Web</string>
-    <string name="title_activity_teste">TesteActivity</string>
+    <string name="ticket_presentation">Sua senha:</string>
+    <string name="ticket">TW314</string>
+    <string name="ticket_count">1 senha</string>
+    <string name="count_presentation">à sua frente</string>
+    <string name="establishment">Ticket Web</string>
+    <string name="service_presentation">Serviço:</string>
+    <string name="service">Ticket Web</string>
+    <string name="last_ticket_presentation">Chamando agora:</string>
+    <string name="last_ticket">TW313</string>
     <!-- -->
 </resources>
