@@ -2,35 +2,95 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="@dimen/navigation_header"
-    android:background="@color/colorPrimaryVariant">
+    android:background="@color/calmdown">
 
-    <!-- Logo e nome lado a lado -->
+    <!-- Logo e nome lado a lado
     <ImageView
         android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_tw314_drawer2"
         android:foregroundGravity="center"/>
+    -->
 
     <!-- Senha -->
-    <TextView
-        android:paddingTop="20dp"
-        android:layout_gravity="center"
-        android:textColor="@color/colorBackground"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
-        android:text="@string/ticket_presentation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <TextView
+            android:text="@string/ticket_presentation"
+            android:textSize="20sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- TextView com Ticket do usuario -->
+        <TextView
+            android:id="@+id/nav_ticket"
+            android:layout_marginLeft="6dp"
+            android:text="@string/ticket"
+            android:textSize="20sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <!-- Servico -->
-    <TextView
-        android:layout_gravity="center"
-        android:textColor="@color/colorBackground"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
-        android:text="@string/service_presentation"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:text="@string/service_presentation"
+            android:textSize="15sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- TextView com Servico do Ticket do usuario -->
+        <TextView
+            android:id="@+id/nav_service"
+            android:layout_marginLeft="6dp"
+            android:text="@string/service"
+            android:textSize="15sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- Senha sendo chamada no momento -->
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center">
 
+        <TextView
+            android:text="@string/last_ticket_presentation"
+            android:textSize="18sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <!-- TextView com Ticket sendo chamado -->
+        <TextView
+            android:id="@+id/nav_last_ticket"
+            android:layout_marginLeft="6dp"
+            android:text="@string/last_ticket"
+            android:textSize="18sp"
+            android:textColor="@color/colorBackground"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>
