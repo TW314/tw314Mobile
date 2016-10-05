@@ -2,6 +2,7 @@ package tw314.tw314mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,9 @@ public class FaqActivity extends ActionBarActivity implements SearchView.OnQuery
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
+
+        // Inicializa configuracoes do aplicativo
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Instancia ListView
         listView = (ListView) findViewById(R.id.listView);

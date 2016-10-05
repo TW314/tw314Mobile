@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/category">
+        <!-- Notificacoes Automaticas -->
+        <SwitchPreference
+            android:key="auto_notify"
+            android:title="@string/auto_notify_title"
+            android:summary="@string/auto_notify_summary"
+            android:defaultValue="true" />
+
+        <!-- Status da Ampulheta -->
+        <EditTextPreference
+            android:key="hourglass_status"
+            android:title="@string/hourglass_status_title"
+            android:dialogTitle="@string/hourglass_status_input"
+            android:summary="@string/hourglass_status_summary"
+            android:defaultValue="5"/>
+
+        <!-- Frequencia de Atualizacao
+        <MultiSelectListPreference
+            android:title="@string/update_frequency_title">
+
+            <CheckBoxPreference
+                android:key="new_ticket"
+                android:title="@string/new_ticket"
+                android:defaultValue="true"/>
+
+
+            <CheckBoxPreference
+                android:key="hourglass_status_update"
+                android:title="@string/ticket_situation"
+                android:defaultValue="true" />
+        </MultiSelectListPreference>
+        -->
+
+        <!-- Vibrar -->
+        <SwitchPreference
+            android:key="vibration"
+            android:title="@string/vibrate_title"
+            android:summary="@string/vibrate_summary"
+            android:defaultValue="true" />
+
+        <!-- Toque de Notificacao -->
+        <RingtonePreference
+            android:key="ringtone"
+            android:title="@string/notify_tune_title"
+            android:summary="@string/auto_notify_summary"
+            android:showSilent="true"
+            android:showDefault="true"
+            android:ringtoneType="all" />
+
+        <!-- Persistencia -->
+        <SwitchPreference
+            android:key="persistence"
+            android:title="@string/persistence_title"
+            android:summary="@string/persistence_summary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

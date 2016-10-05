@@ -3,10 +3,12 @@ package tw314.tw314mobile;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,11 +24,16 @@ public class MainLayoutActivity extends ActionBarActivity {
     private NavigationView mNavView;
     // Atributo que controla chamada das Activities no NavDrawer
     private Intent navIntent;
+    // Atributo da Toolbar
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Inicializa configuracoes do aplicativo
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Inicializa compontenes do NavDrawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,7 +124,8 @@ public class MainLayoutActivity extends ActionBarActivity {
                 // Configuracoes
                 case R.id.settings:
                     // TODO: Adicionar Intent para SettingsActivity
-                    Toast.makeText(MainLayoutActivity.this, "Configurações selecionado", Toast.LENGTH_SHORT).show();
+                    navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
+                    startActivity(navIntent);
                     break;
                 case R.id.exit:
                     // TODO: Adiconar acao para sair do app
