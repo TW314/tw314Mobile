@@ -37,7 +37,12 @@
         </activity>
 
         <!-- ACTIVITY DA TELA DE PREFERENCIAS -->
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainLayoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainLayoutActivity" />
+        </activity>
     </application>
 
 </manifest>

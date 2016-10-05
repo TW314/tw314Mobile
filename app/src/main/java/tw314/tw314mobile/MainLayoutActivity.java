@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainLayoutActivity extends ActionBarActivity {
+public class MainLayoutActivity extends AppCompatActivity {
 
     // Atributo do NavDrawerLayout
     private DrawerLayout mDrawerLayout;
@@ -31,6 +31,10 @@ public class MainLayoutActivity extends ActionBarActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Seta a ActionBar como sendo o layout action_bar.xml
+        mToolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(mToolbar);
 
         // Inicializa configuracoes do aplicativo
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);

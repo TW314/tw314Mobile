@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -12,18 +14,25 @@ import android.widget.SearchView;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Pedro on 04/09/2016.
- */
 public class FaqActivity extends ActionBarActivity implements SearchView.OnQueryTextListener {
 
     // Atributo da lista de questoes
     private ListView listView;
+    // Atributo da Toolbar
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
+
+        // Seta a ActionBar como sendo o layout action_bar.xml
+        mToolbar = (Toolbar) findViewById(R.id.action_bar);
+        setSupportActionBar(mToolbar);
+
+        // Seta icone de lista e efeito de transicao de icones para true
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // Inicializa configuracoes do aplicativo
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);

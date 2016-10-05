@@ -12,6 +12,11 @@
         android:orientation="vertical"
         android:stretchColumns="0,1,2">
 
+        <!-- ActionBar -->
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/action_bar" />
+
         <!-- Linha do Ticket -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,6 +126,7 @@
                     android:id="@+id/establishment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/establishment"
                     android:textSize="20sp"
                     android:textStyle="bold"
