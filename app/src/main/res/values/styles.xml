@@ -1,10 +1,7 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Configura layout da MainActivity, NavigationDrawer FaqActivity-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-
-        <!-- Cores definidas no projeto -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -12,19 +9,25 @@
         <item name="android:textColor">@color/colorText</item>
     </style>
 
-    <!-- Presentation theme. -->
+    <!-- Configura layout da AccessActivity e AboutActivity -->
     <style name="PresentationTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-
         <!-- Cores definidas no projeto -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorBackground</item>
-
-        <!-- Fonte definida no projeto
-        <item name="android:fontFamily">@</item>
-        -->
     </style>
 
+    <!-- Configura layout do Toolbar -->
+    <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@color/colorBackground</item>
+        <item name="android:actionMenuTextColor">@color/colorBackground</item>
+        <item name="android:editTextColor">@color/colorBackground</item>
+        <item name="selectableItemBackground">?android:selectableItemBackground</item>
+        <item name="selectableItemBackgroundBorderless">?android:selectableItemBackground</item>
+    </style>
 
+    <!-- Configura estilo para o Title do Toolbar -->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">21sp</item>
+    </style>
 </resources>
