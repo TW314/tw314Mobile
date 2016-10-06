@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context=".AccessActivity">
+    tools:context=".layout.AccessActivity">
 
     <!-- Logo do TW314 -->
     <ImageView

@@ -9,7 +9,8 @@
         android:icon="@mipmap/ic_search_white_48dp"
         android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
+        app:showAsAction="ifRoom|collapseActionView"
+        android:actionViewClass="android.widget.SearchView" />
     <!-- ActionOverflow -->
     <!-- Item de Perguntas Frequentes -->
     <item

@@ -1,8 +1,10 @@
-package tw314.tw314mobile;
+package tw314.tw314mobile.layout;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+
+import tw314.tw314mobile.R;
 
 /**
  * Created by Pedro on 04/09/2016.

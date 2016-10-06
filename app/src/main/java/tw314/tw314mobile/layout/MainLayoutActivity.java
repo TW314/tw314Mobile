@@ -1,4 +1,4 @@
-package tw314.tw314mobile;
+package tw314.tw314mobile.layout;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import tw314.tw314mobile.R;
 
 public class MainLayoutActivity extends AppCompatActivity {
 

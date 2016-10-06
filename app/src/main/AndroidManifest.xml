@@ -9,7 +9,7 @@
         android:supportsRtl="true" >
 
         <!-- ACTIVITY DA TELA DE ACESSO -->
-        <activity android:name=".AccessActivity"
+        <activity android:name=".layout.AccessActivity"
             android:theme="@style/PresentationTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,30 +18,30 @@
         </activity>
 
         <!-- ACTIVITY DA TELA PRINCIPAL -->
-        <activity android:name=".MainLayoutActivity"
+        <activity android:name=".layout.MainLayoutActivity"
             android:theme="@style/AppTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE FAQ -->
-        <activity android:name=".FaqActivity"
+        <activity android:name=".layout.FaqActivity"
             android:theme="@style/AppTheme"
-            android:parentActivityName=".MainLayoutActivity">
+            android:parentActivityName=".layout.MainLayoutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainLayoutActivity" />
+                android:value=".layout.MainLayoutActivity" />
         </activity>
 
         <!-- ACTIVITY DA TELA DE SOBRE -->
-        <activity android:name=".AboutActivity"
+        <activity android:name=".layout.AboutActivity"
             android:theme="@style/PresentationTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE PREFERENCIAS -->
-        <activity android:name=".SettingsActivity"
-            android:parentActivityName=".MainLayoutActivity">
+        <activity android:name=".layout.SettingsActivity"
+            android:parentActivityName=".layout.MainLayoutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainLayoutActivity" />
+                android:value=".layout.MainLayoutActivity" />
         </activity>
     </application>
 
