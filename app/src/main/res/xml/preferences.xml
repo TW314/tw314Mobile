@@ -17,22 +17,11 @@
             android:summary="@string/hourglass_status_summary"
             android:defaultValue="5"/>
 
-        <!-- Frequencia de Atualizacao
+        <!-- Frequencia de Atualizacao -->
         <MultiSelectListPreference
-            android:title="@string/update_frequency_title">
-
-            <CheckBoxPreference
-                android:key="new_ticket"
-                android:title="@string/new_ticket"
-                android:defaultValue="true"/>
-
-
-            <CheckBoxPreference
-                android:key="hourglass_status_update"
-                android:title="@string/ticket_situation"
-                android:defaultValue="true" />
-        </MultiSelectListPreference>
-        -->
+            android:title="@string/update_frequency_title"
+            android:entries="@array/frequency_array"
+            android:entryValues="@array/frequency_values" />
 
         <!-- Vibrar -->
         <SwitchPreference

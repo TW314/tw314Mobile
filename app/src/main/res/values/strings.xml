@@ -41,8 +41,14 @@
     <string name="auto_notify_summary">O aplicativo avisará sobre mudanças  que ocorreram com a fila</string>
     <string name="update_frequency_title">Frequência de Atualização</string>
     <string name="update_frequency_summary">Selecione a frequência com que o aplicativo deve te notificar sobre a fila</string>
-    <string name="new_ticket">Sempre que uma nova senha for chamada</string>
-    <string name="ticket_situation">Sempre que o estado da Ampulheta mudar</string>
+    <string-array name="frequency_array">
+        <item>Sempre que uma nova senha for chamada</item>
+        <item>Sempre que o estado da Ampulheta mudar</item>
+    </string-array>
+    <string-array name="frequency_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
     <string name="hourglass_status_title">Estado da Ampulheta</string>
     <string name="hourglass_status_input">Informe o numero de pessoas</string>
     <string name="hourglass_status_summary">Escolha a cada quantas senhas a ampulheta deve mudar de estado</string>
