@@ -20,6 +20,7 @@ public class PostList {
     }
 
     public static List<PostItem> getPostArrayList() {
+        postArrayList.clear();
         postArrayList.add(new PostItem("Adicionar Senha", "Aprenda como adicionar mais uma senha ao aplicativo, para fazer acompanhamento"));
         postArrayList.add(new PostItem("Configurar Notificações", "Aprenda como configurar frequência e insistência das notificações"));
         postArrayList.add(new PostItem("Cores da Ampulheta", "Aprenda o que as cores da ampulheta na tela principal informam"));
