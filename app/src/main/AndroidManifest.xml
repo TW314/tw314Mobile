@@ -8,6 +8,10 @@
         android:label="TW314"
         android:supportsRtl="true" >
 
+        <!-- PERMISSOES DE ACESSO -->
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name = "android.permission.ACCESS_NETWORK_STATE" />
+
         <!-- ACTIVITY DA TELA DE ACESSO -->
         <activity android:name=".layout.AccessActivity"
             android:theme="@style/PresentationTheme">
