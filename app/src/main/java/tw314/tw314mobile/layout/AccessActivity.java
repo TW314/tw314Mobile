@@ -1,22 +1,24 @@
 package tw314.tw314mobile.layout;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.testeWS.ApiClient;
+import tw314.tw314mobile.testeWS.ApiEndpointInterface;
 import tw314.tw314mobile.testeWS.Ticket;
-import tw314.tw314mobile.testeWS.TicketHttp;
 
 public class AccessActivity extends AppCompatActivity {
 
-    // Objeto para utilizar classe Async
-    private TicketTask mTicketTask;
+
     // Objeto Ticket
     private Ticket mTicket;
     // Atributo do botao de acesso
@@ -32,7 +34,6 @@ public class AccessActivity extends AppCompatActivity {
 
         // Instanciando objeto EditText
         txtAccess = (EditText) findViewById(R.id.access_code);
-        codigoAcesso = txtAccess.getText().toString();
 
         // Instanciando objeto Botao
         btnAccess = (Button) findViewById(R.id.access_button);
@@ -45,50 +46,29 @@ public class AccessActivity extends AppCompatActivity {
     private View.OnClickListener btnAccessClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (mTicketTask == null){
-                if (TicketHttp.hasConnection(AccessActivity.this)){
-                    searchTicket();
-                } else {
-                    Toast.makeText(AccessActivity.this, "Sem conexão de internet", Toast.LENGTH_SHORT).show();
-                }
-            } else if (mTicketTask.getStatus() == AsyncTask.Status.RUNNING) {
-                // Exibir progress bar
-            }
-            startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+            codigoAcesso = txtAccess.getText().toString();
+            Toast.makeText(AccessActivity.this, "Carregando dados da senha", Toast.LENGTH_SHORT).show();
+            addData(codigoAcesso);
         }
     };
 
-    // Metodo que inicia Thread Async
-    public void searchTicket(){
-        if (mTicketTask == null || mTicketTask.getStatus() != AsyncTask.Status.RUNNING){
-            mTicketTask = new TicketTask();
-            mTicketTask.execute();
-        }
-    }
+    private void addData(String codigoAcesso){
+        ApiEndpointInterface apiService = ApiClient.getTicket().create(ApiEndpointInterface.class);
 
-    // Classe Assincrona que executa Thread de consumo do WebService em Background
-    public class TicketTask extends AsyncTask<Void, String, Ticket>{
-
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-            // Exibir Progress Bar
-        }
-
-        @Override
-        protected Ticket doInBackground(Void... string) {
-            // Faz a chamada do JSON para receber os parametros
-            return TicketHttp.getTicketJson(codigoAcesso);
-        }
-
-        @Override
-        protected void onPostExecute(Ticket ticket){
-            super.onPostExecute(ticket);
-            if (ticket != null){
-                mTicket = new Ticket(ticket);
-                // Chama ActivityMain e passa o objeto Ticket com Intent;
-                Toast.makeText(AccessActivity.this, ticket.getSiglaServico(), Toast.LENGTH_SHORT).show();
+        Call<Ticket> call = apiService.getTicket(codigoAcesso);
+        Log.i("TAG", "CodigoAcesso: " + codigoAcesso);
+        call.enqueue(new Callback<Ticket>(){
+            @Override
+            public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+                mTicket = response.body();
+                Log.i("TAG", "Pegou objeto");
+                Log.i("TAG", mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket());
             }
-        }
+
+            @Override
+            public void onFailure(Call<Ticket> call, Throwable t) {
+                Log.i("TAG", "Não pegou objeto");
+            }
+        });
     }
 }
