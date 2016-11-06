@@ -1,20 +1,32 @@
 package tw314.tw314mobile.layout;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.testeWS.ApiClient;
+import tw314.tw314mobile.testeWS.ApiEndpointInterface;
+import tw314.tw314mobile.testeWS.Ticket;
 
 public class AccessActivity extends AppCompatActivity {
 
+
+    // Objeto Ticket
+    private Ticket mTicket;
     // Atributo do botao de acesso
     private Button btnAccess;
     // Atributo da caixa de texto do codigo
     private EditText txtAccess;
+    // Atributo que recebe o codigo do txtAccess
+    private String codigoAcesso;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +46,29 @@ public class AccessActivity extends AppCompatActivity {
     private View.OnClickListener btnAccessClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+            codigoAcesso = txtAccess.getText().toString();
+            Toast.makeText(AccessActivity.this, "Carregando dados da senha", Toast.LENGTH_SHORT).show();
+            addData(codigoAcesso);
         }
     };
+
+    private void addData(String codigoAcesso){
+        ApiEndpointInterface apiService = ApiClient.getTicket().create(ApiEndpointInterface.class);
+
+        Call<Ticket> call = apiService.getTicket(codigoAcesso);
+        Log.i("TAG", "CodigoAcesso: " + codigoAcesso);
+        call.enqueue(new Callback<Ticket>(){
+            @Override
+            public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+                mTicket = response.body();
+                Log.i("TAG", "Pegou objeto");
+                Log.i("TAG", mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket());
+            }
+
+            @Override
+            public void onFailure(Call<Ticket> call, Throwable t) {
+                Log.i("TAG", "Não pegou objeto");
+            }
+        });
+    }
 }
