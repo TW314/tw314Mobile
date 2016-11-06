@@ -9,15 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.Serializable;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tw314.tw314mobile.R;
 import tw314.tw314mobile.testeWS.ApiClient;
 import tw314.tw314mobile.testeWS.ApiEndpointInterface;
-import tw314.tw314mobile.testeWS.Ticket;
+import tw314.tw314mobile.model.Ticket;
 
 public class AccessActivity extends AppCompatActivity {
 

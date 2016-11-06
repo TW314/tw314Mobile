@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.testeWS.Ticket;
+import tw314.tw314mobile.model.Ticket;
 
 public class MainLayoutActivity extends AppCompatActivity {
 

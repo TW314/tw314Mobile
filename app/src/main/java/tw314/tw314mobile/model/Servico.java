@@ -1,4 +1,4 @@
-package tw314.tw314mobile.testeWS;
+package tw314.tw314mobile.model;
 
 import com.google.gson.annotations.SerializedName;
 
