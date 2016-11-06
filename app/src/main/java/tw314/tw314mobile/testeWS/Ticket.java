@@ -2,7 +2,9 @@ package tw314.tw314mobile.testeWS;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ticket {
+import java.io.Serializable;
+
+public class Ticket implements Serializable{
 
     @SerializedName("numero_ticket")
     private int numeroTicket;

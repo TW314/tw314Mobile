@@ -2,7 +2,9 @@ package tw314.tw314mobile.testeWS;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RelacionamentoEmpSvc {
+import java.io.Serializable;
+
+public class RelacionamentoEmpSvc implements Serializable {
 
     @SerializedName("status_ativacao")
     private String statusAtivacao;

@@ -37,7 +37,6 @@
                 android:id="@+id/ticket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ticket"
                 android:textSize="27sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorAccent"
@@ -127,7 +126,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/establishment"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"
@@ -153,7 +151,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/service"
                         android:textStyle="bold"
                         android:textColor="@color/colorAccent"
                         android:textAppearance="?android:attr/textAppearanceMedium" />

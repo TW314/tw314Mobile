@@ -2,7 +2,9 @@ package tw314.tw314mobile.testeWS;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Servico {
+import java.io.Serializable;
+
+public class Servico implements Serializable {
 
     @SerializedName("id")
     private int id;

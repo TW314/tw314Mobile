@@ -2,7 +2,9 @@ package tw314.tw314mobile.testeWS;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StatusTicket {
+import java.io.Serializable;
+
+public class StatusTicket implements Serializable {
 
     @SerializedName("id")
     private int id;

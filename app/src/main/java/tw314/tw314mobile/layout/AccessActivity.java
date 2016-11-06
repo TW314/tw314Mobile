@@ -1,5 +1,6 @@
 package tw314.tw314mobile.layout;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +66,9 @@ public class AccessActivity extends AppCompatActivity {
                 mTicket = response.body();
                 Log.i("TAG", "Pegou objeto");
                 Log.i("TAG", mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket());
+                Intent intent = new Intent(AccessActivity.this, MainLayoutActivity.class);
+                intent.putExtra("ticket", mTicket);
+                startActivity(intent);
             }
 
             @Override

@@ -12,12 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.testeWS.Ticket;
 
 public class MainLayoutActivity extends AppCompatActivity {
 
+    // Objeto que recebe intencao
+    Intent intent;
+    // Objeto que recebe Ticket vindo
+    Ticket mTicket;
     // Atributo do NavDrawerLayout
     private DrawerLayout mDrawerLayout;
     // Atributo que coordena abrir e fechar do NavDrawer
@@ -28,11 +34,32 @@ public class MainLayoutActivity extends AppCompatActivity {
     private Intent navIntent;
     // Atributo da Toolbar
     Toolbar mToolbar;
+    // Componentes que recebem texto
+    TextView mTicketText, mEstablishment, mService;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Recebe intencao do Acesso
+        intent = getIntent();
+        // Recebe objeto da intencao
+        mTicket = (Ticket) intent.getSerializableExtra("ticket");
+
+        // Seta os componentes
+        mTicketText = (TextView) findViewById(R.id.ticket);
+        mEstablishment = (TextView) findViewById(R.id.establishment);
+        mService = (TextView) findViewById(R.id.service);
+
+        // Seta texto dos componentes
+        // Senha
+        String sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
+        mTicketText.setText(sTicket);
+        // Empresa
+        mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
+        // Servico
+        mService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
