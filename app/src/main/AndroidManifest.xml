@@ -12,7 +12,7 @@
         android:supportsRtl="true" >
 
         <!-- ACTIVITY DA TELA DE ACESSO -->
-        <activity android:name=".layout.AccessActivity"
+        <activity android:name=".activities.AccessActivity"
             android:theme="@style/PresentationTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,30 +21,30 @@
         </activity>
 
         <!-- ACTIVITY DA TELA PRINCIPAL -->
-        <activity android:name=".layout.MainLayoutActivity"
+        <activity android:name=".activities.MainLayoutActivity"
             android:theme="@style/AppTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE FAQ -->
-        <activity android:name=".layout.FaqActivity"
+        <activity android:name=".activities.FaqActivity"
             android:theme="@style/AppTheme"
-            android:parentActivityName=".layout.MainLayoutActivity">
+            android:parentActivityName=".activities.MainLayoutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".layout.MainLayoutActivity" />
+                android:value=".activities.MainLayoutActivity" />
         </activity>
 
         <!-- ACTIVITY DA TELA DE SOBRE -->
-        <activity android:name=".layout.AboutActivity"
+        <activity android:name=".activities.AboutActivity"
             android:theme="@style/PresentationTheme">
         </activity>
 
         <!-- ACTIVITY DA TELA DE PREFERENCIAS -->
-        <activity android:name=".layout.SettingsActivity"
-            android:parentActivityName=".layout.MainLayoutActivity">
+        <activity android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.MainLayoutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".layout.MainLayoutActivity" />
+                android:value=".activities.MainLayoutActivity" />
         </activity>
     </application>
 

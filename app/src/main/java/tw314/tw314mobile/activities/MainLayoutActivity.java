@@ -1,4 +1,4 @@
-package tw314.tw314mobile.layout;
+package tw314.tw314mobile.activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.model.Ticket;
+import tw314.tw314mobile.models.Ticket;
 
 public class MainLayoutActivity extends AppCompatActivity {
 

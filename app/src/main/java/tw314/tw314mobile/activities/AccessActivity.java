@@ -1,4 +1,4 @@
-package tw314.tw314mobile.layout;
+package tw314.tw314mobile.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +13,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.testeWS.ApiClient;
-import tw314.tw314mobile.testeWS.ApiEndpointInterface;
-import tw314.tw314mobile.model.Ticket;
+import tw314.tw314mobile.persistences.TicketService;
+import tw314.tw314mobile.interfaces.TicketEndpointInterface;
+import tw314.tw314mobile.models.Ticket;
 
 public class AccessActivity extends AppCompatActivity {
-
 
     // Objeto Ticket
     private Ticket mTicket;
@@ -27,7 +26,7 @@ public class AccessActivity extends AppCompatActivity {
     // Atributo da caixa de texto do codigo
     private EditText txtAccess;
     // Atributo que recebe o codigo do txtAccess
-    private String codigoAcesso;
+    private String accessCode;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,31 +46,41 @@ public class AccessActivity extends AppCompatActivity {
     private View.OnClickListener btnAccessClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            codigoAcesso = txtAccess.getText().toString();
+            accessCode = txtAccess.getText().toString();
             Toast.makeText(AccessActivity.this, "Carregando dados da senha", Toast.LENGTH_SHORT).show();
-            addData(codigoAcesso);
+            obtainTicketByAccessCode(accessCode);
         }
     };
 
-    private void addData(String codigoAcesso){
-        ApiEndpointInterface apiService = ApiClient.getTicket().create(ApiEndpointInterface.class);
+    // Metodo de chamada do Servico de consumo
+    private void obtainTicketByAccessCode(String accessCode){
 
-        Call<Ticket> call = apiService.getTicket(codigoAcesso);
-        Log.i("TAG", "CodigoAcesso: " + codigoAcesso);
+        // Cria um objeto de servico que implementa a interface de consumo
+        TicketEndpointInterface ticketService = TicketService.getTicket().create(TicketEndpointInterface.class);
+
+        // Chamada do WS com metodo GET da interface
+        Call<Ticket> call = ticketService.getTicket(accessCode);
+        // Tarefa que recebe response do WS
         call.enqueue(new Callback<Ticket>(){
+            // Metodo de response -> Apenas e chamado se chegou ao WS e fez retorno
             @Override
             public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+                // Objeto Ticket recebe corpo do response
                 mTicket = response.body();
-                Log.i("TAG", "Pegou objeto");
-                Log.i("TAG", mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket());
+
+                // Cria intencao de chamada da proxima tela
                 Intent intent = new Intent(AccessActivity.this, MainLayoutActivity.class);
+                // Passa como 'parametro' da intencao o Ticket preenchido
                 intent.putExtra("ticket", mTicket);
+                // Chama MainLayoutActivity
                 startActivity(intent);
             }
 
+            // Metodo de response -> Apenas e chamado se chegou ao WS e falhou
             @Override
             public void onFailure(Call<Ticket> call, Throwable t) {
-                Log.i("TAG", "Não pegou objeto");
+                // TODO: Achar um jeito de voltar resposta pro usuário
+                Log.i("TW314", "Não pegou objeto");
             }
         });
     }

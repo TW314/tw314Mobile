@@ -1,4 +1,4 @@
-package tw314.tw314mobile.model;
+package tw314.tw314mobile.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class Ticket implements Serializable{
 
+    // @SerializedName indica qual Objeto do JSON deve ser serializado no atributo
     @SerializedName("numero_ticket")
     private int numeroTicket;
     @SerializedName("status_ticket")

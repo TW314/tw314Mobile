@@ -1,4 +1,4 @@
-package tw314.tw314mobile.model;
+package tw314.tw314mobile.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class RelacionamentoEmpSvc implements Serializable {
 
+    // @SerializedName indica qual Objeto do JSON deve ser serializado no atributo
     @SerializedName("status_ativacao")
     private String statusAtivacao;
     @SerializedName("servico")

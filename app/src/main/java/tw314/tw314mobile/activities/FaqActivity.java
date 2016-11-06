@@ -1,4 +1,4 @@
-package tw314.tw314mobile.layout;
+package tw314.tw314mobile.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Locale;
 
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.faqlist.PostItem;
-import tw314.tw314mobile.faqlist.PostList;
+import tw314.tw314mobile.faq.FaqItem;
+import tw314.tw314mobile.faq.FaqList;
 
 public class FaqActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class FaqActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         // Cria Adapter para popular ListView
-        myAppAdapter = new MyAppAdapter(PostList.getPostArrayList(), this);
+        myAppAdapter = new MyAppAdapter(FaqList.getPostArrayList(), this);
         listView.setAdapter(myAppAdapter);
     }
 
@@ -139,15 +139,15 @@ public class FaqActivity extends AppCompatActivity {
             TextView txtTitle, txtSubTitle;
         }
         // Lista a ser enviada para o ListView
-        public List<PostItem> parkingList;
+        public List<FaqItem> parkingList;
         // Contexto passado para o adapter
         public Context context;
-        ArrayList<PostItem> arraylist;
+        ArrayList<FaqItem> arraylist;
 
-        private MyAppAdapter(List<PostItem> apps, Context context) {
+        private MyAppAdapter(List<FaqItem> apps, Context context) {
             this.parkingList = apps;
             this.context = context;
-            arraylist = new ArrayList<PostItem>();
+            arraylist = new ArrayList<FaqItem>();
             arraylist.addAll(parkingList);
         }
 
@@ -207,7 +207,7 @@ public class FaqActivity extends AppCompatActivity {
             } else {
                 // Texto preenchido
                 // Percorre os itens da lista e valida os caracteres com o padrao local (Locale)
-                for (PostItem postDetail : arraylist) {
+                for (FaqItem postDetail : arraylist) {
                     if (charText.length() != 0 && postDetail.getPostTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                         // Se o TITULO contem o texto digitado
                         parkingList.add(postDetail);

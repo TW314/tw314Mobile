@@ -1,10 +1,10 @@
-package tw314.tw314mobile.faqlist;
+package tw314.tw314mobile.faq;
 
 /**
  * Created by Pedro on 06/10/2016.
  */
 
-public class PostItem {
+public class FaqItem {
 
     // Atibutos de cada item da lista
     private String postTitle;
@@ -26,7 +26,7 @@ public class PostItem {
         this.postSubTitle = postSubTitle;
     }
 
-    public PostItem(String postTitle, String postSubTitle) {
+    public FaqItem(String postTitle, String postSubTitle) {
         this.postTitle = postTitle;
         this.postSubTitle = postSubTitle;
     }

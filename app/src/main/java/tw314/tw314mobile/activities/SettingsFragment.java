@@ -1,4 +1,4 @@
-package tw314.tw314mobile.layout;
+package tw314.tw314mobile.activities;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
