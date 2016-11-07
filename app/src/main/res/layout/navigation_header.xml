@@ -4,15 +4,6 @@
     android:layout_height="@dimen/navigation_header"
     android:background="@color/calmdown">
 
-    <!-- Logo e nome lado a lado
-    <ImageView
-        android:paddingTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_tw314_drawer2"
-        android:foregroundGravity="center"/>
-    -->
-
     <!-- Senha -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +23,6 @@
         <TextView
             android:id="@+id/nav_ticket"
             android:layout_marginLeft="6dp"
-            android:text="@string/ticket"
             android:textSize="20sp"
             android:textColor="@color/colorBackground"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"
@@ -58,7 +48,6 @@
         <TextView
             android:id="@+id/nav_service"
             android:layout_marginLeft="6dp"
-            android:text="@string/service"
             android:textSize="15sp"
             android:textColor="@color/colorBackground"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.WindowTitle"

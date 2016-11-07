@@ -35,6 +35,7 @@ public class MainLayoutActivity extends AppCompatActivity {
     // Atributo da Toolbar
     Toolbar mToolbar;
     // Componentes que recebem texto
+    String sTicket;
     TextView mTicketText, mEstablishment, mService;
 
     @Override
@@ -54,7 +55,7 @@ public class MainLayoutActivity extends AppCompatActivity {
 
         // Seta texto dos componentes
         // Senha
-        String sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
+        sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
         mTicketText.setText(sTicket);
         // Empresa
         mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
@@ -108,6 +109,11 @@ public class MainLayoutActivity extends AppCompatActivity {
     // Override para controlar os itens selecionados da ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        TextView mNavTicket, mNavService;
+        mNavTicket = (TextView) findViewById(R.id.nav_ticket);
+        mNavService = (TextView) findViewById(R.id.nav_service);
+        mNavTicket.setText(sTicket);
+        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
         // Se selecionado Overflow + Opcao "Perguntas frequentes"
         if (item.getItemId() == R.id.faq){
             // Chama Activity FAQ
