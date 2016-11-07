@@ -68,12 +68,11 @@ public class AccessActivity extends AppCompatActivity {
                 // Objeto Ticket recebe corpo do response
                 mTicket = response.body();
 
-                // Cria intencao de chamada da proxima tela
-                Intent intent = new Intent(AccessActivity.this, MainLayoutActivity.class);
-                // Passa como 'parametro' da intencao o Ticket preenchido
-                intent.putExtra("ticket", mTicket);
+                // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
+                Ticket.setInstance(mTicket);
+
                 // Chama MainLayoutActivity
-                startActivity(intent);
+                startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
             }
 
             // Metodo de response -> Apenas e chamado se chegou ao WS e falhou

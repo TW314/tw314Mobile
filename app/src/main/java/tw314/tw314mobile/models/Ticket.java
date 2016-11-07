@@ -14,6 +14,18 @@ public class Ticket implements Serializable{
     @SerializedName("relacionamento_emp_svc")
     private RelacionamentoEmpSvc relacionamentoEmpSvc;
 
+    // Instancia estatica do Ticket - para uso em toda a aplicacao
+    private static Ticket instance;
+
+    // Seta a instancia - chamado no acesso, passando o JSON
+    public static void setInstance(Ticket ticket){
+        Ticket.instance = ticket;
+    }
+
+    public static Ticket getInstance(){
+        return Ticket.instance;
+    }
+
     public int getNumeroTicket() {
         return numeroTicket;
     }

@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,7 @@ import tw314.tw314mobile.models.Ticket;
 public class MainLayoutActivity extends AppCompatActivity {
 
     // Objeto que recebe intencao
-    Intent intent;
+    //Intent intent;
     // Objeto que recebe Ticket vindo
     Ticket mTicket;
     // Atributo do NavDrawerLayout
@@ -43,10 +44,8 @@ public class MainLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Recebe intencao do Acesso
-        intent = getIntent();
-        // Recebe objeto da intencao
-        mTicket = (Ticket) intent.getSerializableExtra("ticket");
+        // Pega instancia do Ticket
+        mTicket = Ticket.getInstance();
 
         // Seta os componentes
         mTicketText = (TextView) findViewById(R.id.ticket);
