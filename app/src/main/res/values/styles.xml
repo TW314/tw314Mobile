@@ -17,6 +17,15 @@
         <item name="android:textColor">@color/colorBackground</item>
     </style>
 
+    <!-- Configura layout da MainActivity, NavigationDrawer FaqActivity-->
+    <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
     <!-- Configura layout do Toolbar -->
     <style name="ToolbarTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textColorPrimary">@color/colorBackground</item>

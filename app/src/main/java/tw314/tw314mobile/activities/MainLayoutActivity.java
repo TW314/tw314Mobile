@@ -21,8 +21,6 @@ import tw314.tw314mobile.models.Ticket;
 
 public class MainLayoutActivity extends AppCompatActivity {
 
-    // Objeto que recebe intencao
-    //Intent intent;
     // Objeto que recebe Ticket vindo
     Ticket mTicket;
     // Atributo do NavDrawerLayout
@@ -141,13 +139,12 @@ public class MainLayoutActivity extends AppCompatActivity {
                 case R.id.add_ticket:
                     // TODO: Adicionar Intent para AddTicketActivity
                     // navIntent = new Intent(MainLayoutActivity.this, AddTicketActivity);
-                    Toast.makeText(MainLayoutActivity.this, "Adicionar Senha selecionado", Toast.LENGTH_SHORT).show();
-                    break;
+                    // break;
                 // Ver Lista de Senhas
                 case R.id.ticket_list:
                     // TODO: Adicionar Intent para TicketListActivity
                     // navIntent = new Intent(MainLayoutActivity.this, TicketListActivity);
-                    Toast.makeText(MainLayoutActivity.this, "Visualizar Senhas selecionado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainLayoutActivity.this, "Não disponível", Toast.LENGTH_SHORT).show();
                     break;
                 // Desistir da Fila
                 case R.id.give_queue_up:
@@ -163,18 +160,20 @@ public class MainLayoutActivity extends AppCompatActivity {
                 case R.id.settings:
                     // TODO: Adicionar Intent para SettingsActivity
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
-                    startActivity(navIntent);
                     break;
                 case R.id.exit:
-                    // TODO: Adiconar acao para sair do app
-                    Toast.makeText(MainLayoutActivity.this, "Sair selecionado", Toast.LENGTH_SHORT).show();
+                    // TODO: Adiconar caixa de dialogo para perguntar se quer sair
+                    Toast.makeText(MainLayoutActivity.this, "Saindo do app", Toast.LENGTH_SHORT).show();
+                    // Caso queira sair
+                    Ticket.setInstance(null);
+                    navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
                     break;
                 default:
                     break;
             }
 
-            // TODO: Adicionar chamada para Activity definida no Switch
-            // startActivity(navIntent);
+            if (navIntent != null)
+                startActivity(navIntent);
             return false;
         }
     };

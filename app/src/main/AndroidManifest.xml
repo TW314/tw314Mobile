@@ -41,7 +41,8 @@
 
         <!-- ACTIVITY DA TELA DE PREFERENCIAS -->
         <activity android:name=".activities.SettingsActivity"
-            android:parentActivityName=".activities.MainLayoutActivity">
+            android:parentActivityName=".activities.MainLayoutActivity"
+            android:theme="@style/SettingsTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainLayoutActivity" />
