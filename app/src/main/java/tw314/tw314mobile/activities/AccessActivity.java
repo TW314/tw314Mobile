@@ -13,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.persistences.TicketService;
+import tw314.tw314mobile.connectionHandler.ConnectionHandler;
 import tw314.tw314mobile.interfaces.TicketEndpointInterface;
 import tw314.tw314mobile.models.Ticket;
 
@@ -56,7 +56,7 @@ public class AccessActivity extends AppCompatActivity {
     private void obtainTicketByAccessCode(String accessCode){
 
         // Cria um objeto de servico que implementa a interface de consumo
-        TicketEndpointInterface ticketService = TicketService.obtainTicketByHTTPGet().create(TicketEndpointInterface.class);
+        TicketEndpointInterface ticketService = ConnectionHandler.obtainTicketByHTTPGet().create(TicketEndpointInterface.class);
 
         // Chamada do WS com metodo GET da interface
         Call<Ticket> call = ticketService.getTicket(accessCode);
