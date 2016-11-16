@@ -5,11 +5,11 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.fragments.ExitDialogFragment;
+import tw314.tw314mobile.fragments.GiveUpDialogFragment;
+import tw314.tw314mobile.interfaces.AlertDialogInterface;
 import tw314.tw314mobile.models.Ticket;
 
-public class MainLayoutActivity extends AppCompatActivity {
+public class MainLayoutActivity extends AppCompatActivity implements AlertDialogInterface {
 
     // Objeto que recebe Ticket vindo
     Ticket mTicket;
@@ -33,6 +36,8 @@ public class MainLayoutActivity extends AppCompatActivity {
     private Intent navIntent;
     // Atributo da Toolbar
     Toolbar mToolbar;
+    // Atributo de TAG dos AlertDialogs
+    String tag;
     // Componentes que recebem texto
     String sTicket;
     TextView mTicketText, mEstablishment, mService;
@@ -148,8 +153,8 @@ public class MainLayoutActivity extends AppCompatActivity {
                     break;
                 // Desistir da Fila
                 case R.id.give_queue_up:
-                    // TODO: Adicionar acoes para desistir da fila
-                    Toast.makeText(MainLayoutActivity.this, "Desistir da Fila selecionado", Toast.LENGTH_SHORT).show();
+                    tag = "GiveUp";
+                    showGiveUpDialog(tag);
                     break;
                 // Desativar Notificacoes
                 case R.id.disable_notification:
@@ -162,11 +167,8 @@ public class MainLayoutActivity extends AppCompatActivity {
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
                     break;
                 case R.id.exit:
-                    // TODO: Adiconar caixa de dialogo para perguntar se quer sair
-                    Toast.makeText(MainLayoutActivity.this, "Saindo do app", Toast.LENGTH_SHORT).show();
-                    // Caso queira sair
-                    Ticket.setInstance(null);
-                    navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
+                    tag = "Exit";
+                    showGiveUpDialog(tag);
                     break;
                 default:
                     break;
@@ -192,4 +194,33 @@ public class MainLayoutActivity extends AppCompatActivity {
         // Passa todas as mudancas de configuracao para o Drawer
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+
+    public void showGiveUpDialog(String tag) {
+        if (tag.equalsIgnoreCase("GiveUp")){
+            DialogFragment dialogFragment = new GiveUpDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), "GiveUpDialogFragment");
+        } else if (tag.equalsIgnoreCase("Exit")){
+            DialogFragment dialogFragment = new ExitDialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), "ExitDialogFragment");
+        }
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialogFragment) {
+        if (dialogFragment.getTag().equalsIgnoreCase("GiveUpDialogFragment")){
+            // TODO: Adicionar acoes para desistir da fila
+            navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
+            startActivity(navIntent);
+        } else if (dialogFragment.getTag().equalsIgnoreCase("ExitDialogFragment")){
+            Ticket.setInstance(null);
+            navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
+            startActivity(navIntent);
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialogFragment) {
+
+    }
+
 }
