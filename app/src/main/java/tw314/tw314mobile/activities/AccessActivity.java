@@ -22,33 +22,33 @@ public class AccessActivity extends AppCompatActivity {
     // Objeto Ticket
     private Ticket mTicket;
     // Atributo do botao de acesso
-    private Button btnAccess;
+    private Button mAccessButton;
     // Atributo da caixa de texto do codigo
-    private EditText txtAccess;
+    private EditText mAccessText;
     // Atributo que recebe o codigo do txtAccess
-    private String accessCode;
+    private String mAccessCode;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access);
 
         // Instanciando objeto EditText
-        txtAccess = (EditText) findViewById(R.id.access_code);
+        mAccessText = (EditText) findViewById(R.id.access_code);
 
         // Instanciando objeto Botao
-        btnAccess = (Button) findViewById(R.id.access_button);
+        mAccessButton = (Button) findViewById(R.id.access_button);
 
         // Adiciona evento de click ao btnAccess
-        btnAccess.setOnClickListener(btnAccessClick);
+        mAccessButton.setOnClickListener(btnAccessClick);
     }
 
     // Atributo que controla resposta ao clique do btnAccess
     private View.OnClickListener btnAccessClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            accessCode = txtAccess.getText().toString();
+            mAccessCode = mAccessText.getText().toString();
             Toast.makeText(AccessActivity.this, "Carregando dados da senha", Toast.LENGTH_SHORT).show();
-            obtainTicketByAccessCode(accessCode);
+            obtainTicketByAccessCode(mAccessCode);
         }
     };
 
