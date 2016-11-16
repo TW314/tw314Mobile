@@ -16,12 +16,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import retrofit2.Call;
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.connectionHandler.ConnectionHandler;
 import tw314.tw314mobile.enums.DialogTagEnum;
+import tw314.tw314mobile.enums.StatusTicketEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
 import tw314.tw314mobile.models.Ticket;
+import tw314.tw314mobile.services.TicketService;
 
 public class MainLayoutActivity extends AppCompatActivity implements AlertDialogInterface {
     // Objeto que recebe Ticket vindo
@@ -224,7 +228,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
             // Atualiza status para "Cancelado"
             // TODO: Adicionar acoes para desistir da fila
-
+            String accessCode = "120161113CB21";
+            updateTicketByAccessCode(accessCode);
             // Esvazia instancia
             Ticket.setInstance(null);
             // Chama tela de acesso
@@ -240,6 +245,13 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Metodo que identifica o clique do botao negativo do AlertDialog
     @Override
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
+
+    }
+
+    // Metodo que faz atualizacao do Status do Ticket
+    private void updateTicketByAccessCode(String accessCode){
+        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
+        ticketService.updateTicket(accessCode, StatusTicketEnum.CANCELADO);
 
     }
 }

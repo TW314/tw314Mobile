@@ -56,7 +56,7 @@ public class AccessActivity extends AppCompatActivity {
     private void obtainTicketByAccessCode(String accessCode){
 
         // Cria um objeto de servico que implementa a interface de consumo
-        TicketService ticketService = ConnectionHandler.obtainTicketByHTTPGet().create(TicketService.class);
+        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
 
         // Chamada do WS com metodo GET da interface
         Call<Ticket> call = ticketService.getTicket(accessCode);
