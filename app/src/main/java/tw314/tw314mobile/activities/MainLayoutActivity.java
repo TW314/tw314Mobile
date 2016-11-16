@@ -39,8 +39,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Atributo de TAG dos AlertDialogs
     String tag;
     // Componentes que recebem texto
-    String sTicket;
-    TextView mTicketText, mEstablishment, mService;
+    String sTicket; // String do Ticket
+    TextView mTicketText, mEstablishment, mService; // Layout Principal
+    TextView mNavTicket, mNavService; // NavigationView
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -51,18 +52,25 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mTicket = Ticket.getInstance();
 
         // Seta os componentes
+        // Layout Principal
         mTicketText = (TextView) findViewById(R.id.ticket);
         mEstablishment = (TextView) findViewById(R.id.establishment);
         mService = (TextView) findViewById(R.id.service);
+
+        // NavigationView
+        mNavTicket = (TextView) findViewById(R.id.nav_ticket);
+        mNavService = (TextView) findViewById(R.id.nav_service);
 
         // Seta texto dos componentes
         // Senha
         sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
         mTicketText.setText(sTicket);
+        mNavTicket.setText(sTicket);
         // Empresa
         mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
         // Servico
         mService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
+        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -111,11 +119,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Override para controlar os itens selecionados da ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        TextView mNavTicket, mNavService;
-        mNavTicket = (TextView) findViewById(R.id.nav_ticket);
-        mNavService = (TextView) findViewById(R.id.nav_service);
-        mNavTicket.setText(sTicket);
-        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
         // Se selecionado Overflow + Opcao "Perguntas frequentes"
         if (item.getItemId() == R.id.faq){
             // Chama Activity FAQ
@@ -154,7 +157,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                 // Desistir da Fila
                 case R.id.give_queue_up:
                     tag = "GiveUp";
-                    showGiveUpDialog(tag);
+                    showAlertDialog(tag);
                     break;
                 // Desativar Notificacoes
                 case R.id.disable_notification:
@@ -168,14 +171,17 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                     break;
                 case R.id.exit:
                     tag = "Exit";
-                    showGiveUpDialog(tag);
+                    showAlertDialog(tag);
                     break;
                 default:
                     break;
             }
 
+            // Compara se Intent nao esta vazia para nao estourar excecao
             if (navIntent != null)
                 startActivity(navIntent);
+
+            // Return aleatorio para conclusao do metodo
             return false;
         }
     };
@@ -195,24 +201,37 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public void showGiveUpDialog(String tag) {
+    // Metodo que mostra os AlertDialogs dependendo da opcao selecionada no menu
+    public void showAlertDialog(String tag) {
+        // Compara a string TAG para chamar o Dialgo especifico
+        // GiveUp -> Dialog sobre a Desistencia da fila
+        // Exit -> Dialog sobre a Saida do aplicativo
         if (tag.equalsIgnoreCase("GiveUp")){
+            // AlertDialog de Desistencia
+            // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new GiveUpDialogFragment();
-            dialogFragment.show(getSupportFragmentManager(), "GiveUpDialogFragment");
+            dialogFragment.show(getSupportFragmentManager(), tag);
         } else if (tag.equalsIgnoreCase("Exit")){
+            // AlertDialog de Saida
+            // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new ExitDialogFragment();
-            dialogFragment.show(getSupportFragmentManager(), "ExitDialogFragment");
+            dialogFragment.show(getSupportFragmentManager(), tag);
         }
     }
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
-        if (dialogFragment.getTag().equalsIgnoreCase("GiveUpDialogFragment")){
+        if (dialogFragment.getTag().equalsIgnoreCase("GiveUp")){
+            // Atualiza status para "Cancelado"
             // TODO: Adicionar acoes para desistir da fila
+
+            // Esvazia instancia
+            Ticket.setInstance(null);
+            // Chama tela de acesso
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
             startActivity(navIntent);
-        } else if (dialogFragment.getTag().equalsIgnoreCase("ExitDialogFragment")){
-            Ticket.setInstance(null);
+        } else if (dialogFragment.getTag().equalsIgnoreCase("Exit")){
+            // TODO: Decidir como vai ser a saida do aplicativo
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
             startActivity(navIntent);
         }
