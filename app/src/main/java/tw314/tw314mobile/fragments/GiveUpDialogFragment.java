@@ -15,8 +15,10 @@ import tw314.tw314mobile.interfaces.AlertDialogInterface;
 
 public class GiveUpDialogFragment extends DialogFragment {
 
+    // Interface dos metodos de clique positivo e negativo
     AlertDialogInterface alertDialogInterface;
 
+    // Metodo que insere o Dialog na Activity
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
@@ -27,6 +29,7 @@ public class GiveUpDialogFragment extends DialogFragment {
         }
     }
 
+    // Metodo que cria o Dialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         // Usa builder para construir AlertDialog
