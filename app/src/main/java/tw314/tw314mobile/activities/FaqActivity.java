@@ -28,9 +28,9 @@ import tw314.tw314mobile.faq.FaqList;
 public class FaqActivity extends AppCompatActivity {
 
     // Atributo da lista de questoes
-    private ListView listView;
+    private ListView mQuestionList;
     // Atributo do Adapter que popula lista;
-    private MyAppAdapter myAppAdapter;
+    private QuestionListAdapter questionListAdapter;
     // Atributo da Toolbar
     private Toolbar mToolbar;
 
@@ -51,11 +51,11 @@ public class FaqActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Instancia ListView
-        listView = (ListView) findViewById(R.id.listView);
+        mQuestionList = (ListView) findViewById(R.id.listView);
 
         // Cria Adapter para popular ListView
-        myAppAdapter = new MyAppAdapter(FaqList.getPostArrayList(), this);
-        listView.setAdapter(myAppAdapter);
+        questionListAdapter = new QuestionListAdapter(FaqList.getPostArrayList(), this);
+        mQuestionList.setAdapter(questionListAdapter);
     }
 
     // Override para criar ActionBar com ActionOverflow
@@ -86,8 +86,9 @@ public class FaqActivity extends AppCompatActivity {
             // Override que controla resposta a digitacao de texto
             @Override
             public boolean onQueryTextChange(String searchQuery) {
-                myAppAdapter.filter(searchQuery.toString().trim());
-                listView.invalidate();
+                // Realiza a pesquisa
+                questionListAdapter.filter(searchQuery.toString().trim());
+                mQuestionList.invalidate();
                 return true;
             }
         });
@@ -112,9 +113,6 @@ public class FaqActivity extends AppCompatActivity {
     // Override para controlar os itens selecionados da ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()){
             // Se selecionado Overflow + Opcao "Perguntas frequentes"
             case R.id.faq:
@@ -132,29 +130,29 @@ public class FaqActivity extends AppCompatActivity {
     }
 
     // Classe do Adapter da ListView
-    public class MyAppAdapter extends BaseAdapter {
+    public class QuestionListAdapter extends BaseAdapter {
 
         // Classe que popula os itens de uma linha - Titulo e Subtitulo
         public class ViewHolder {
-            TextView txtTitle, txtSubTitle;
+            TextView mTitleText, mSubTitleText;
         }
         // Lista a ser enviada para o ListView
-        public List<FaqItem> parkingList;
+        public List<FaqItem> resultList;
         // Contexto passado para o adapter
         public Context context;
-        ArrayList<FaqItem> arraylist;
+        ArrayList<FaqItem> finalList;
 
-        private MyAppAdapter(List<FaqItem> apps, Context context) {
-            this.parkingList = apps;
+        private QuestionListAdapter(List<FaqItem> apps, Context context) {
+            this.resultList = apps;
             this.context = context;
-            arraylist = new ArrayList<FaqItem>();
-            arraylist.addAll(parkingList);
+            finalList = new ArrayList<FaqItem>();
+            finalList.addAll(resultList);
         }
 
         // Getter da parkingList
         @Override
         public int getCount() {
-            return parkingList.size();
+            return resultList.size();
         }
         // Getter do Item da lista
         @Override
@@ -181,15 +179,15 @@ public class FaqActivity extends AppCompatActivity {
                 rowView = inflater.inflate(R.layout.faq_list_item, null);
                 // Configura componentes da linha
                 viewHolder = new ViewHolder();
-                viewHolder.txtTitle = (TextView) rowView.findViewById(R.id.item_title);
-                viewHolder.txtSubTitle = (TextView) rowView.findViewById(R.id.item_subtitle);
+                viewHolder.mTitleText = (TextView) rowView.findViewById(R.id.item_title);
+                viewHolder.mSubTitleText = (TextView) rowView.findViewById(R.id.item_subtitle);
                 rowView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             // Seta componentes da lista
-            viewHolder.txtTitle.setText(parkingList.get(position).getPostTitle() + "");
-            viewHolder.txtSubTitle.setText(parkingList.get(position).getPostSubTitle() + "");
+            viewHolder.mTitleText.setText(resultList.get(position).getPostTitle() + "");
+            viewHolder.mSubTitleText.setText(resultList.get(position).getPostSubTitle() + "");
             return rowView;
         }
 
@@ -200,20 +198,20 @@ public class FaqActivity extends AppCompatActivity {
             charText = charText.toLowerCase(Locale.getDefault());
 
             // Limpa a lista que preenche a ListView
-            parkingList.clear();
+            resultList.clear();
             if (charText.length() == 0) {
                 // Se nao digitou nada
-                parkingList.addAll(arraylist);
+                resultList.addAll(finalList);
             } else {
                 // Texto preenchido
                 // Percorre os itens da lista e valida os caracteres com o padrao local (Locale)
-                for (FaqItem postDetail : arraylist) {
+                for (FaqItem postDetail : finalList) {
                     if (charText.length() != 0 && postDetail.getPostTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                         // Se o TITULO contem o texto digitado
-                        parkingList.add(postDetail);
+                        resultList.add(postDetail);
                     } else if (charText.length() != 0 && postDetail.getPostSubTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                         // Se o SUBTITULO contem o texto digitado
-                        parkingList.add(postDetail);
+                        resultList.add(postDetail);
                     }
                 }
             }
