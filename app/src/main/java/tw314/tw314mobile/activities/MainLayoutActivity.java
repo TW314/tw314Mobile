@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import tw314.tw314mobile.R;
+import tw314.tw314mobile.enums.DialogTagEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
@@ -155,7 +156,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                     break;
                 // Desistir da Fila
                 case R.id.give_queue_up:
-                    tag = "GiveUp";
+                    tag = DialogTagEnum.GIVE_UP_TAG;
                     showAlertDialog(tag);
                     break;
                 // Desativar Notificacoes
@@ -169,7 +170,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
                     break;
                 case R.id.exit:
-                    tag = "Exit";
+                    tag = DialogTagEnum.EXIT_TAG;
                     showAlertDialog(tag);
                     break;
                 default:
@@ -205,12 +206,12 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         // Compara a string TAG para chamar o Dialgo especifico
         // GiveUp -> Dialog sobre a Desistencia da fila
         // Exit -> Dialog sobre a Saida do aplicativo
-        if (tag.equalsIgnoreCase("GiveUp")){
+        if (tag.equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
             // AlertDialog de Desistencia
             // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new GiveUpDialogFragment();
             dialogFragment.show(getSupportFragmentManager(), tag);
-        } else if (tag.equalsIgnoreCase("Exit")){
+        } else if (tag.equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // AlertDialog de Saida
             // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new ExitDialogFragment();
@@ -221,7 +222,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Metodo que identifica o clique do botao positivo do AlertDialog
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
-        if (dialogFragment.getTag().equalsIgnoreCase("GiveUp")){
+        if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
             // Atualiza status para "Cancelado"
             // TODO: Adicionar acoes para desistir da fila
 
@@ -230,7 +231,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             // Chama tela de acesso
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
             startActivity(navIntent);
-        } else if (dialogFragment.getTag().equalsIgnoreCase("Exit")){
+        } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
             startActivity(navIntent);
