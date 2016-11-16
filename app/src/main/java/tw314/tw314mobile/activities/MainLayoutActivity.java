@@ -219,6 +219,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     }
 
+    // Metodo que identifica o clique do botao positivo do AlertDialog
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
         if (dialogFragment.getTag().equalsIgnoreCase("GiveUp")){
@@ -237,6 +238,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     }
 
+    // Metodo que identifica o clique do botao negativo do AlertDialog
     @Override
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
 
