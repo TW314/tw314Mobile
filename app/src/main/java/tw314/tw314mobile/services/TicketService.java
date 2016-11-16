@@ -1,11 +1,11 @@
-package tw314.tw314mobile.interfaces;
+package tw314.tw314mobile.services;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import tw314.tw314mobile.models.Ticket;
 
-public interface TicketEndpointInterface {
+public interface TicketService {
 
     /*
      * Interface de consumo do webservice
