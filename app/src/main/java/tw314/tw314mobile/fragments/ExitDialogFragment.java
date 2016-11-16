@@ -15,18 +15,21 @@ import tw314.tw314mobile.interfaces.AlertDialogInterface;
 
 public class ExitDialogFragment extends DialogFragment {
 
+    // Interface dos metodos de clique positivo e negativo
     AlertDialogInterface alertDialogInterface;
 
+    // Metodo que insere o Dialog na Activity
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
         try {
             alertDialogInterface = (AlertDialogInterface) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " deve implementar GiveUpDialogFragment");
+            throw new ClassCastException(activity.toString() + " deve implementar ExitDialogFragment");
         }
     }
 
+    // Metodo que cria o Dialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         // Usa builder para construir AlertDialog
