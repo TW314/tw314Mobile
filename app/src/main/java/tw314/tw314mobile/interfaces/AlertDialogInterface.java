@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
  */
 
 public interface AlertDialogInterface {
-
     // Metodos de clique do dialog implementados na Activity
     public void onDialogPositiveClick(DialogFragment dialog);
     public void onDialogNegativeClick(DialogFragment dialog);

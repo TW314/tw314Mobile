@@ -14,7 +14,6 @@ import tw314.tw314mobile.interfaces.AlertDialogInterface;
  */
 
 public class GiveUpDialogFragment extends DialogFragment {
-
     // Interface dos metodos de clique positivo e negativo
     AlertDialogInterface alertDialogInterface;
 

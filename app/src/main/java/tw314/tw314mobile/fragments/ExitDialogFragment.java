@@ -14,7 +14,6 @@ import tw314.tw314mobile.interfaces.AlertDialogInterface;
  */
 
 public class ExitDialogFragment extends DialogFragment {
-
     // Interface dos metodos de clique positivo e negativo
     AlertDialogInterface alertDialogInterface;
 
@@ -53,5 +52,4 @@ public class ExitDialogFragment extends DialogFragment {
         // Cria e retorna instancia de criacao do AlertDialog
         return builder.create();
     }
-
 }

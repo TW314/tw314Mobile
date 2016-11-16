@@ -23,7 +23,6 @@ import tw314.tw314mobile.interfaces.AlertDialogInterface;
 import tw314.tw314mobile.models.Ticket;
 
 public class MainLayoutActivity extends AppCompatActivity implements AlertDialogInterface {
-
     // Objeto que recebe Ticket vindo
     Ticket mTicket;
     // Atributo do NavDrawerLayout
@@ -243,5 +242,4 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
 
     }
-
 }
