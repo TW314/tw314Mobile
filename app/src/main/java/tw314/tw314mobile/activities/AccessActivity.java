@@ -47,7 +47,7 @@ public class AccessActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             mAccessCode = mAccessText.getText().toString();
-            Toast.makeText(AccessActivity.this, "Carregando dados da senha", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AccessActivity.this, "Aguarde... Carregando dados da senha...", Toast.LENGTH_SHORT).show();
             obtainTicketByAccessCode(mAccessCode);
         }
     };
@@ -79,6 +79,8 @@ public class AccessActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Ticket> call, Throwable t) {
                 // TODO: Achar um jeito de voltar resposta pro usuário
+                Toast.makeText(AccessActivity.this, "Não foi possível carregar os dados da senha. " +
+                        "Tente novamente.", Toast.LENGTH_SHORT).show();
                 Log.i("TW314", "Não pegou objeto");
             }
         });
