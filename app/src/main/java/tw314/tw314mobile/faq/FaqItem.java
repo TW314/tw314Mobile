@@ -7,28 +7,28 @@ package tw314.tw314mobile.faq;
 public class FaqItem {
 
     // Atibutos de cada item da lista
-    private String postTitle;
-    private String postSubTitle;
+    private String itemTitle;
+    private String itemSubTitle;
 
-    public String getPostTitle() {
-        return postTitle;
+    public String getItemTitle() {
+        return itemTitle;
     }
 
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
     }
 
-    public String getPostSubTitle() {
-        return postSubTitle;
+    public String getItemSubTitle() {
+        return itemSubTitle;
     }
 
-    public void setPostSubTitle(String postSubTitle) {
-        this.postSubTitle = postSubTitle;
+    public void setItemSubTitle(String itemSubTitle) {
+        this.itemSubTitle = itemSubTitle;
     }
 
-    public FaqItem(String postTitle, String postSubTitle) {
-        this.postTitle = postTitle;
-        this.postSubTitle = postSubTitle;
+    public FaqItem(String itemTitle, String itemSubTitle) {
+        this.itemTitle = itemTitle;
+        this.itemSubTitle = itemSubTitle;
     }
 
 }

@@ -54,7 +54,7 @@ public class FaqActivity extends AppCompatActivity {
         mQuestionList = (ListView) findViewById(R.id.listView);
 
         // Cria Adapter para popular ListView
-        questionListAdapter = new QuestionListAdapter(FaqList.getPostArrayList(), this);
+        questionListAdapter = new QuestionListAdapter(FaqList.getFaqList(), this);
         mQuestionList.setAdapter(questionListAdapter);
     }
 
@@ -186,8 +186,8 @@ public class FaqActivity extends AppCompatActivity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             // Seta componentes da lista
-            viewHolder.mTitleText.setText(resultList.get(position).getPostTitle() + "");
-            viewHolder.mSubTitleText.setText(resultList.get(position).getPostSubTitle() + "");
+            viewHolder.mTitleText.setText(resultList.get(position).getItemTitle() + "");
+            viewHolder.mSubTitleText.setText(resultList.get(position).getItemSubTitle() + "");
             return rowView;
         }
 
@@ -206,10 +206,10 @@ public class FaqActivity extends AppCompatActivity {
                 // Texto preenchido
                 // Percorre os itens da lista e valida os caracteres com o padrao local (Locale)
                 for (FaqItem postDetail : finalList) {
-                    if (charText.length() != 0 && postDetail.getPostTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    if (charText.length() != 0 && postDetail.getItemTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                         // Se o TITULO contem o texto digitado
                         resultList.add(postDetail);
-                    } else if (charText.length() != 0 && postDetail.getPostSubTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    } else if (charText.length() != 0 && postDetail.getItemSubTitle().toLowerCase(Locale.getDefault()).contains(charText)) {
                         // Se o SUBTITULO contem o texto digitado
                         resultList.add(postDetail);
                     }
