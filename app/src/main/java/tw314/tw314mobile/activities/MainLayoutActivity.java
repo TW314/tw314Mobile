@@ -41,7 +41,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Componentes que recebem texto
     String sTicket; // String do Ticket
     TextView mTicketText, mEstablishment, mService; // Layout Principal
-    TextView mNavTicket, mNavService; // NavigationView
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -57,20 +56,14 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mEstablishment = (TextView) findViewById(R.id.establishment);
         mService = (TextView) findViewById(R.id.service);
 
-        // NavigationView
-        mNavTicket = (TextView) findViewById(R.id.nav_ticket);
-        mNavService = (TextView) findViewById(R.id.nav_service);
-
         // Seta texto dos componentes
         // Senha
         sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
         mTicketText.setText(sTicket);
-        mNavTicket.setText(sTicket);
         // Empresa
         mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
         // Servico
         mService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
-        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -119,6 +112,12 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Override para controlar os itens selecionados da ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        TextView mNavTicket, mNavService; // NavigationView
+        // NavigationView
+        mNavTicket = (TextView) findViewById(R.id.nav_ticket);
+        mNavService = (TextView) findViewById(R.id.nav_service);
+        mNavTicket.setText(sTicket);
+        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
         // Se selecionado Overflow + Opcao "Perguntas frequentes"
         if (item.getItemId() == R.id.faq){
             // Chama Activity FAQ
