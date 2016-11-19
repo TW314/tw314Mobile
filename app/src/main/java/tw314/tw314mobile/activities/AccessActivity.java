@@ -14,6 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tw314.tw314mobile.R;
 import tw314.tw314mobile.connectionHandler.ConnectionHandler;
+import tw314.tw314mobile.enums.StatusTicketEnum;
 import tw314.tw314mobile.services.TicketService;
 import tw314.tw314mobile.models.Ticket;
 
@@ -72,7 +73,11 @@ public class AccessActivity extends AppCompatActivity {
                 Ticket.setInstance(mTicket);
 
                 // Chama MainLayoutActivity
-                startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+                if (Ticket.getInstance().getStatusTicket().getId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO)
+                    startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+                else
+                    Toast.makeText(AccessActivity.this, "Ticket indisponível para acesso. " +
+                            "Verifique o código e tente novamente.", Toast.LENGTH_SHORT).show();
             }
 
             // Metodo de response -> Apenas e chamado se chegou ao WS e falhou

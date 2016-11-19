@@ -10,13 +10,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import tw314.tw314mobile.R;
 import tw314.tw314mobile.connectionHandler.ConnectionHandler;
 import tw314.tw314mobile.enums.DialogTagEnum;
@@ -24,6 +28,7 @@ import tw314.tw314mobile.enums.StatusTicketEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
+import tw314.tw314mobile.models.StatusTicket;
 import tw314.tw314mobile.models.Ticket;
 import tw314.tw314mobile.services.TicketService;
 
@@ -228,13 +233,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
             // Atualiza status para "Cancelado"
             // TODO: Adicionar acoes para desistir da fila
-            String accessCode = "120161113CB21";
+            String accessCode = "120161116CB41";
+            // Chamada do metodo que faz o update
             updateTicketByAccessCode(accessCode);
-            // Esvazia instancia
-            Ticket.setInstance(null);
-            // Chama tela de acesso
-            navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
-            startActivity(navIntent);
         } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
@@ -250,8 +251,35 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
     // Metodo que faz atualizacao do Status do Ticket
     private void updateTicketByAccessCode(String accessCode){
-        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-        ticketService.updateTicket(accessCode, StatusTicketEnum.CANCELADO);
+        Log.i("TW314", accessCode);
+        // Pega a instancia atual e atualiza o statusTicket para Cancelado
+        Ticket ticket = Ticket.getInstance();
+        ticket.getStatusTicket().setId(StatusTicketEnum.CANCELADO);
+        ticket.getStatusTicket().setNome("Cancelado");
 
+        // Reseta a instancia com o Ticket atualizado
+        Ticket.setInstance(ticket);
+
+        // Chama o servico e faz atualizacao no WebService
+        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
+        Call<ResponseBody> call = ticketService.updateTicket(accessCode, Ticket.getInstance());
+        Log.i("TW314", "Chamou update");
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Esvazia instancia
+                Ticket.setInstance(null);
+                Log.i("TW314", "Esvaziou instância");
+                // Chama tela de acesso
+                navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
+                Log.i("TW314", "Criou intent");
+                startActivity(navIntent);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 }
