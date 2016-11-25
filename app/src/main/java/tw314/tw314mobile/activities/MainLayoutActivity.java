@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +27,6 @@ import tw314.tw314mobile.enums.StatusTicketEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
-import tw314.tw314mobile.models.StatusTicket;
 import tw314.tw314mobile.models.Ticket;
 import tw314.tw314mobile.services.TicketService;
 
@@ -233,9 +231,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
             // Atualiza status para "Cancelado"
             // TODO: Adicionar acoes para desistir da fila
-            String accessCode = "120161116CB41";
             // Chamada do metodo que faz o update
-            updateTicketByAccessCode(accessCode);
+            updateTicketByAccessCode(Ticket.getInstance().getCodigoAcesso());
         } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
             navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
@@ -253,21 +250,25 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     private void updateTicketByAccessCode(String accessCode){
         Log.i("TW314", accessCode);
         // Pega a instancia atual e atualiza o statusTicket para Cancelado
-        Ticket ticket = Ticket.getInstance();
-        ticket.getStatusTicket().setId(StatusTicketEnum.CANCELADO);
-        ticket.getStatusTicket().setNome("Cancelado");
+        Ticket ticketUpdated = Ticket.getInstance();
+        ticketUpdated.getStatusTicket().setId(StatusTicketEnum.CANCELADO);
+
+        Log.i("TW314", "" + ticketUpdated.getStatusTicket().getId());
 
         // Reseta a instancia com o Ticket atualizado
-        Ticket.setInstance(ticket);
+        Ticket.setInstance(ticketUpdated);
+
+        Log.i("TW314", "" + ticketUpdated.getStatusTicket().getId());
 
         // Chama o servico e faz atualizacao no WebService
         TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-        Call<ResponseBody> call = ticketService.updateTicket(accessCode, Ticket.getInstance());
+        Call<Ticket> call = ticketService.updateTicket(accessCode, Ticket.getInstance().getStatusTicket().getId());
         Log.i("TW314", "Chamou update");
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<Ticket>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<Ticket> call, Response<Ticket> response) {
                 // Esvazia instancia
+                //Log.i("TW314", response.body().toString());
                 Ticket.setInstance(null);
                 Log.i("TW314", "Esvaziou instância");
                 // Chama tela de acesso
@@ -277,8 +278,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(Call<Ticket> call, Throwable t) {
+                Log.i("TW314", "Falha");
             }
         });
     }

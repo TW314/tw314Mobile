@@ -69,13 +69,12 @@ public class AccessActivity extends AppCompatActivity {
                 // Objeto Ticket recebe corpo do response
                 mTicket = response.body();
 
-                // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
-                Ticket.setInstance(mTicket);
-
                 // Chama MainLayoutActivity
-                if (Ticket.getInstance().getStatusTicket().getId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO)
+                if (mTicket.getStatusTicket().getId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
+                    // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
+                    Ticket.setInstance(mTicket);
                     startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
-                else
+                } else
                     Toast.makeText(AccessActivity.this, "Ticket indisponível para acesso. " +
                             "Verifique o código e tente novamente.", Toast.LENGTH_SHORT).show();
             }

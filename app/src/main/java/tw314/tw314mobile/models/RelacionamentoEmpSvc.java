@@ -1,25 +1,33 @@
 package tw314.tw314mobile.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class RelacionamentoEmpSvc {
 
-public class RelacionamentoEmpSvc implements Serializable {
-
-    // @SerializedName indica qual Objeto do JSON deve ser serializado no atributo
-    @SerializedName("status_ativacao")
-    private String statusAtivacao;
+    @SerializedName("empresaId")
+    private Integer empresaId;
+    @SerializedName("servicoId")
+    private Integer servicoId;
     @SerializedName("servico")
     private Servico servico;
     @SerializedName("empresa")
     private Empresa empresa;
 
-    public String getStatusAtivacao() {
-        return statusAtivacao;
+    public Integer getEmpresaId() {
+        return empresaId;
     }
 
-    public void setStatusAtivacao(String statusAtivacao) {
-        this.statusAtivacao = statusAtivacao;
+    public void setEmpresaId(Integer empresaId) {
+        this.empresaId = empresaId;
+    }
+
+    public Integer getServicoId() {
+        return servicoId;
+    }
+
+    public void setServicoId(Integer servicoId) {
+        this.servicoId = servicoId;
     }
 
     public Servico getServico() {
@@ -37,5 +45,4 @@ public class RelacionamentoEmpSvc implements Serializable {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
 }

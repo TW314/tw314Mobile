@@ -2,23 +2,20 @@ package tw314.tw314mobile.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class Servico {
 
-public class Servico implements Serializable {
-
-    // @SerializedName indica qual Objeto do JSON deve ser serializado no atributo
     @SerializedName("id")
-    private int id;
+    private Integer id;
     @SerializedName("nome")
     private String nome;
     @SerializedName("sigla")
     private String sigla;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,4 +34,5 @@ public class Servico implements Serializable {
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
+
 }

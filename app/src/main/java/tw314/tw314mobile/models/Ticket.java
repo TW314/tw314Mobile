@@ -2,35 +2,40 @@ package tw314.tw314mobile.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class Ticket {
 
-public class Ticket implements Serializable{
-
-    // @SerializedName indica qual Objeto do JSON deve ser serializado no atributo
+    @SerializedName("codigo_acesso")
+    private String codigoAcesso;
     @SerializedName("numero_ticket")
-    private int numeroTicket;
+    private Integer numeroTicket;
     @SerializedName("status_ticket")
     private StatusTicket statusTicket;
     @SerializedName("relacionamento_emp_svc")
     private RelacionamentoEmpSvc relacionamentoEmpSvc;
 
-    // Instancia estatica do Ticket - para uso em toda a aplicacao
-    private static Ticket instance;
+    public static Ticket ticket;
 
-    // Seta a instancia - chamado no acesso, passando o JSON
     public static void setInstance(Ticket ticket){
-        Ticket.instance = ticket;
+        Ticket.ticket = ticket;
     }
 
     public static Ticket getInstance(){
-        return Ticket.instance;
+        return ticket;
     }
 
-    public int getNumeroTicket() {
+    public String getCodigoAcesso() {
+        return codigoAcesso;
+    }
+
+    public void setCodigoAcesso(String codigoAcesso) {
+        this.codigoAcesso = codigoAcesso;
+    }
+
+    public Integer getNumeroTicket() {
         return numeroTicket;
     }
 
-    public void setNumeroTicket(int numeroTicket) {
+    public void setNumeroTicket(Integer numeroTicket) {
         this.numeroTicket = numeroTicket;
     }
 
