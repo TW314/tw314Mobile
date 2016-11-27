@@ -49,8 +49,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      *  mTicketText, mEstablishment, mService: recebem dados do Ticket para mostrar na tela
      */
 
-    Ticket mTicket;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavView;
@@ -68,9 +66,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Pega instancia do Ticket
-        mTicket = Ticket.getInstance();
-
         /*
          * Seta os componentes com informacoes do Ticket
          * mTicketText = Senha
@@ -81,10 +76,10 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mEstablishment = (TextView) findViewById(R.id.establishment);
         mService = (TextView) findViewById(R.id.service);
 
-        sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
+        sTicket = Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getSigla() + Ticket.getInstance().getNumeroTicket();
         mTicketText.setText(sTicket);
-        mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
-        mService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
+        mEstablishment.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
+        mService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -142,7 +137,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mNavTicket = (TextView) findViewById(R.id.nav_ticket);
         mNavService = (TextView) findViewById(R.id.nav_service);
         mNavTicket.setText(sTicket);
-        mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
+        mNavService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
 
         /**
          * Validacao de controle da Opcao Selecionada
@@ -177,28 +172,20 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             switch(item.getItemId()){
-                // Adicionar Senha
                 case R.id.add_ticket:
                     // TODO: Adicionar Intent para AddTicketActivity
-                    // navIntent = new Intent(MainLayoutActivity.this, AddTicketActivity);
-                    // break;
-                // Ver Lista de Senhas
                 case R.id.ticket_list:
                     // TODO: Adicionar Intent para TicketListActivity
-                    // navIntent = new Intent(MainLayoutActivity.this, TicketListActivity);
                     Toast.makeText(MainLayoutActivity.this, "Não disponível", Toast.LENGTH_SHORT).show();
                     break;
-                // Desistir da Fila
                 case R.id.give_queue_up:
                     tag = DialogTagEnum.GIVE_UP_TAG;
                     showAlertDialog(tag);
                     break;
-                // Desativar Notificacoes
                 case R.id.disable_notification:
                     // TODO: Adicionar acoes para desativar notificacoes
                     Toast.makeText(MainLayoutActivity.this, "Desativar Notificacoes selecionado", Toast.LENGTH_SHORT).show();
                     break;
-                // Configuracoes
                 case R.id.settings:
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
                     break;
