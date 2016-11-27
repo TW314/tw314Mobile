@@ -8,8 +8,8 @@ public class Ticket {
     private String codigoAcesso;
     @SerializedName("numero_ticket")
     private Integer numeroTicket;
-    @SerializedName("status_ticket")
-    private StatusTicket statusTicket;
+    @SerializedName("statusTicketId")
+    private int statusTicketId;
     @SerializedName("relacionamento_emp_svc")
     private RelacionamentoEmpSvc relacionamentoEmpSvc;
 
@@ -39,12 +39,12 @@ public class Ticket {
         this.numeroTicket = numeroTicket;
     }
 
-    public StatusTicket getStatusTicket() {
-        return statusTicket;
+    public int getStatusTicketId() {
+        return statusTicketId;
     }
 
-    public void setStatusTicket(StatusTicket statusTicket) {
-        this.statusTicket = statusTicket;
+    public void setStatusTicketId(int statusTicketId) {
+        this.statusTicketId = statusTicketId;
     }
 
     public RelacionamentoEmpSvc getRelacionamentoEmpSvc() {

@@ -70,7 +70,7 @@ public class AccessActivity extends AppCompatActivity {
                 mTicket = response.body();
 
                 // Chama MainLayoutActivity
-                if (mTicket.getStatusTicket().getId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
+                if (mTicket.getStatusTicketId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
                     // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
                     Ticket.setInstance(mTicket);
                     startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));

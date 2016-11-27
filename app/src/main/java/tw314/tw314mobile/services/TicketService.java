@@ -1,9 +1,10 @@
 package tw314.tw314mobile.services;
 
+import android.support.annotation.Nullable;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -16,10 +17,10 @@ public interface TicketService {
      * Realiza o metodo GET passando o codigo_acesso
      * Passa para o Path a string codigoAcesso
      */
-    @GET("ticket/{codigo_acesso}")
-    Call<Ticket> getTicket(@Path("codigo_acesso") String codigoAcesso);
+    @GET("ticket/{accessCode}")
+    Call<Ticket> getTicket(@Path("accessCode") String accessCode);
 
-    @FormUrlEncoded
-    @PUT("ticket/{codigo_acesso}")
-    Call<Ticket> updateTicket(@Path("codigo_acesso") String codigoAcesso, @Field("statusTicketId") int statusTicketId);
+    @PUT("ticket/{accessCode}")
+    Call<ResponseBody> updateTicket(@Path("accessCode") String accessCode, @Body Ticket ticket);
+
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -249,26 +250,19 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     // Metodo que faz atualizacao do Status do Ticket
     private void updateTicketByAccessCode(String accessCode){
         Log.i("TW314", accessCode);
-        // Pega a instancia atual e atualiza o statusTicket para Cancelado
-        Ticket ticketUpdated = Ticket.getInstance();
-        ticketUpdated.getStatusTicket().setId(StatusTicketEnum.CANCELADO);
-
-        Log.i("TW314", "" + ticketUpdated.getStatusTicket().getId());
-
-        // Reseta a instancia com o Ticket atualizado
-        Ticket.setInstance(ticketUpdated);
-
-        Log.i("TW314", "" + ticketUpdated.getStatusTicket().getId());
+        Log.i("TW314", "PreStatusID: " + Ticket.getInstance().getStatusTicketId());
 
         // Chama o servico e faz atualizacao no WebService
         TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-        Call<Ticket> call = ticketService.updateTicket(accessCode, Ticket.getInstance().getStatusTicket().getId());
-        Log.i("TW314", "Chamou update");
-        call.enqueue(new Callback<Ticket>() {
+        Ticket.getInstance().setStatusTicketId(StatusTicketEnum.CANCELADO);
+
+        Log.i("TW314", "PosStatusID: " + Ticket.getInstance().getStatusTicketId());
+
+        Call<ResponseBody> call = ticketService.updateTicket(accessCode, Ticket.getInstance());
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Ticket> call, Response<Ticket> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 // Esvazia instancia
-                //Log.i("TW314", response.body().toString());
                 Ticket.setInstance(null);
                 Log.i("TW314", "Esvaziou instância");
                 // Chama tela de acesso
@@ -278,9 +272,13 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             }
 
             @Override
-            public void onFailure(Call<Ticket> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.i("TW314", "Falha");
+                Log.i("TW314", t.getMessage());
+                t.printStackTrace();
             }
         });
     }
+
+
 }
