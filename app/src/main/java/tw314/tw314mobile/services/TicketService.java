@@ -1,7 +1,5 @@
 package tw314.tw314mobile.services;
 
-import android.support.annotation.Nullable;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,6 +18,7 @@ public interface TicketService {
     @GET("ticket/{accessCode}")
     Call<Ticket> getTicket(@Path("accessCode") String accessCode);
 
+    // Atualiza o Ticket de acordo com o Codigo de Acesso
     @PUT("ticket/{accessCode}")
     Call<ResponseBody> updateTicket(@Path("accessCode") String accessCode, @Body Ticket ticket);
 

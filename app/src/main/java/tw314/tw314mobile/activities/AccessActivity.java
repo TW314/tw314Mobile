@@ -85,7 +85,6 @@ public class AccessActivity extends AppCompatActivity {
                 // TODO: Achar um jeito de voltar resposta pro usuário
                 Toast.makeText(AccessActivity.this, "Não foi possível carregar os dados da senha. " +
                         "Tente novamente.", Toast.LENGTH_SHORT).show();
-                Log.i("TW314", "Não pegou objeto");
             }
         });
     }

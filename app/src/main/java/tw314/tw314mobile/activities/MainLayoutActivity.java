@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,21 +31,35 @@ import tw314.tw314mobile.models.Ticket;
 import tw314.tw314mobile.services.TicketService;
 
 public class MainLayoutActivity extends AppCompatActivity implements AlertDialogInterface {
-    // Objeto que recebe Ticket vindo
+
+    /**
+     * Atributos do LayoutPrincipal
+     *  mTicket: recebe instancia do Ticket
+     *
+     *  mDrawerLayout: layout do menu lateral
+     *  mDrawerToggle: controla abrir e fechar do menu lateral
+     *  mNavView: responde acoes do menu lateral
+     *  navIntent: recebe a chamada das activities em acoes do menu lateral
+     *
+     *  mToolbar: toolbar da aplicacao
+     *
+     *  tag: Atributo de tag dos AlertDialogs das opcoes de Desistir e Sair
+     *
+     *  sTicket: String que cria o ticket completo na tela
+     *  mTicketText, mEstablishment, mService: recebem dados do Ticket para mostrar na tela
+     */
+
     Ticket mTicket;
-    // Atributo do NavDrawerLayout
+
     private DrawerLayout mDrawerLayout;
-    // Atributo que coordena abrir e fechar do NavDrawer
     private ActionBarDrawerToggle mDrawerToggle;
-    // Atributo que responde acoes do menu
     private NavigationView mNavView;
-    // Atributo que controla chamada das Activities no NavDrawer
     private Intent navIntent;
-    // Atributo da Toolbar
+
     Toolbar mToolbar;
-    // Atributo de TAG dos AlertDialogs
+
     String tag;
-    // Componentes que recebem texto
+
     String sTicket; // String do Ticket
     TextView mTicketText, mEstablishment, mService; // Layout Principal
 
@@ -144,7 +157,16 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         return super.onOptionsItemSelected(item);
     }
 
-    // Metodo/Propriedade de resposta aos cliques do NavDrawer
+    /**
+     * Metodo/Propriedade de resposta aos cliques do NavDrawer
+     * Define qual foi a opcao selecionada pelo usuario e realiza resposta
+     *  Adicionar Ticket: Nao implementado
+     *  Lista de Tickets: Nao implementado
+     *  Desistir da Fila: Atualiza status do Ticket e sai da aplicacao
+     *  Desativar Notificacoes: Desativa todas as notificacoes da aplicacao em relacao a fila, exceto a chamada
+     *  Configuracoes: Chama tela de configuracao da aplicacao
+     *  Sair: Sai da aplicacao sem desativar o Ticket ou as notificacoes
+      */
     private NavigationView.OnNavigationItemSelectedListener mNavDrawerClick = new NavigationView.OnNavigationItemSelectedListener(){
         // Opcoes do NavDrawer
         @Override
@@ -173,7 +195,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                     break;
                 // Configuracoes
                 case R.id.settings:
-                    // TODO: Adicionar Intent para SettingsActivity
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
                     break;
                 case R.id.exit:
@@ -193,7 +214,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     };
 
-    // Overrides padrao do NavDrawer
+    /**
+     * Overrides padrao do NavDrawer
+      */
     @Override
     protected void onPostCreate(Bundle savedInstanceState){
         super.onPostCreate(savedInstanceState);
@@ -208,31 +231,39 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    // Metodo que mostra os AlertDialogs dependendo da opcao selecionada no menu
+
+    /**
+     * Metodo que mostra os AlertDialogs dependendo da opcao selecionada no menu
+     * showAlertDialog recebe uma tag para definir qual Alert mostrar, realizando a acao correspondente
+     *  TAG e Resultado: GiveUpTicket -> Dialog de Desistencia do Atendimento
+     *                   ExitApplication -> Dialog de saida da Aplicacao (mantendo notificacoes)
+      */
     public void showAlertDialog(String tag) {
-        // Compara a string TAG para chamar o Dialgo especifico
-        // GiveUp -> Dialog sobre a Desistencia da fila
-        // Exit -> Dialog sobre a Saida do aplicativo
         if (tag.equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
-            // AlertDialog de Desistencia
+
             // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new GiveUpDialogFragment();
             dialogFragment.show(getSupportFragmentManager(), tag);
         } else if (tag.equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
-            // AlertDialog de Saida
+
             // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new ExitDialogFragment();
             dialogFragment.show(getSupportFragmentManager(), tag);
         }
     }
 
-    // Metodo que identifica o clique do botao positivo do AlertDialog
+    /**
+     * Metodos que identificam o clique AlertDialog
+     * onDialogPositiveClick pega o clique positivo e
+     *  realiza acoes correspondentes dependendo da tag recebida:
+     *      GiveUp -> chama metodo que acessa o Servico para desistir da fila
+     *      Exit -> sai da aplicacao
+     *
+     * onDialogNegativeClick somente fecha o AlertDialog
+      */
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
-            // Atualiza status para "Cancelado"
-            // TODO: Adicionar acoes para desistir da fila
-            // Chamada do metodo que faz o update
             updateTicketByAccessCode(Ticket.getInstance().getCodigoAcesso());
         } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
@@ -241,22 +272,23 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     }
 
-    // Metodo que identifica o clique do botao negativo do AlertDialog
     @Override
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
 
     }
 
-    // Metodo que faz atualizacao do Status do Ticket
+    /**
+     * Metodos de acesso ao Servido do Ticket
+     * updateTicketByAccessCode recebe o codigo de acesso, atualiza o status do Ticket
+     *  e chama o Servico, cancelando a espera do atendimento
+     *
+     * getCountOfPeopleBeforeMe recebe o codigo de acesso, chama o Servico e pega
+     *  a contagem de Tickets na fila antes do Ticket autenticado no aplicativo
+      */
     private void updateTicketByAccessCode(String accessCode){
-        Log.i("TW314", accessCode);
-        Log.i("TW314", "PreStatusID: " + Ticket.getInstance().getStatusTicketId());
-
         // Chama o servico e faz atualizacao no WebService
         TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
         Ticket.getInstance().setStatusTicketId(StatusTicketEnum.CANCELADO);
-
-        Log.i("TW314", "PosStatusID: " + Ticket.getInstance().getStatusTicketId());
 
         Call<ResponseBody> call = ticketService.updateTicket(accessCode, Ticket.getInstance());
         call.enqueue(new Callback<ResponseBody>() {
@@ -264,21 +296,16 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 // Esvazia instancia
                 Ticket.setInstance(null);
-                Log.i("TW314", "Esvaziou instância");
-                // Chama tela de acesso
-                navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
-                Log.i("TW314", "Criou intent");
-                startActivity(navIntent);
+                // Finaliza a aplicacao
+                finish();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("TW314", "Falha");
-                Log.i("TW314", t.getMessage());
-                t.printStackTrace();
+                Toast.makeText(MainLayoutActivity.this, "Falha ao atualizar Ticket. " +
+                        "Por favor, aguarde um instante e então tente novamente.", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
 }
