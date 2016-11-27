@@ -6,6 +6,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import tw314.tw314mobile.models.PeopleCounterReceiver;
 import tw314.tw314mobile.models.Ticket;
 
 public interface TicketService {
@@ -17,6 +18,10 @@ public interface TicketService {
      */
     @GET("ticket/{accessCode}")
     Call<Ticket> getTicket(@Path("accessCode") String accessCode);
+
+    // Pega numero de pessoas na fila a frente do Ticket
+    @GET("ticket/pessoas/{accessCode")
+    Call<PeopleCounterReceiver> getCountOfPeopleBeforeMe(@Path("accessCode") String accessCode);
 
     // Atualiza o Ticket de acordo com o Codigo de Acesso
     @PUT("ticket/{accessCode}")

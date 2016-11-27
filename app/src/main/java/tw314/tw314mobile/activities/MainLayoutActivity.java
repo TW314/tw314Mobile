@@ -27,6 +27,7 @@ import tw314.tw314mobile.enums.StatusTicketEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
+import tw314.tw314mobile.models.PeopleCounterReceiver;
 import tw314.tw314mobile.models.Ticket;
 import tw314.tw314mobile.services.TicketService;
 
@@ -223,6 +224,13 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Metodo que recebe a contagem de pessoas na frente do Ticket do usuario
+     * Chama metodo que faz acesso ao Servico
+     */
+    private void getCountOfPeople(String accessCode){
+        getCountOfPeopleByAccessCode(accessCode);
+    }
 
     /**
      * Metodo que mostra os AlertDialogs dependendo da opcao selecionada no menu
@@ -296,6 +304,25 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(MainLayoutActivity.this, "Falha ao atualizar Ticket. " +
                         "Por favor, aguarde um instante e então tente novamente.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getCountOfPeopleByAccessCode(String accessCode) {
+        // Chama o servico e faz atualizacao no WebService
+        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
+        Call<PeopleCounterReceiver> call = ticketService.getCountOfPeopleBeforeMe(accessCode);
+
+        call.enqueue(new Callback<PeopleCounterReceiver>(){
+            @Override
+            public void onResponse(Call<PeopleCounterReceiver> call, Response<PeopleCounterReceiver> response) {
+                PeopleCounterReceiver.setPeopleCounterReceiver(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<PeopleCounterReceiver> call, Throwable t) {
+
             }
         });
     }
