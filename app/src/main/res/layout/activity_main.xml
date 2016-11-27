@@ -83,80 +83,50 @@
                 android:layout_marginLeft="6dp" />
         </LinearLayout>
 
-        <!-- Linha de Senha Chamada no Estabelecimento | Empresa e Servico de senha do usuario -->
-        <TableRow
-            android:layout_marginTop="23dp"
-            android:layout_gravity="center">
-            <!-- Coluna de Senha Chamada -->
-            <LinearLayout
+        <!-- Coluna de Empresa e Serviço -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/establishment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <!-- Linha de Servico -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
                 android:orientation="vertical"
-                android:layout_gravity="center"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/last_ticket_presentation" />
+                    android:text="@string/service_presentation"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:gravity="center" />
 
                 <TextView
-                    android:id="@+id/last_ticket"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_ticket"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorAccent"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </LinearLayout>
-
-            <!-- Coluna de Empresa e Serviço -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/establishment"
+                    android:id="@+id/service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <!-- Linha de Servico -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/service_presentation"
-                        android:textAppearance="?android:attr/textAppearance"
-                        android:gravity="center" />
-
-                    <TextView
-                        android:id="@+id/service"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorAccent"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-                </LinearLayout>
             </LinearLayout>
-        </TableRow>
+        </LinearLayout>
+
 
     </TableLayout>
     <!-- Fim do Layout Principal -->
