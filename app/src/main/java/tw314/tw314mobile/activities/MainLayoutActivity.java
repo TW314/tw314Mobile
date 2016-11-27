@@ -61,7 +61,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     String tag;
 
     String sTicket; // String do Ticket
-    TextView mTicketText, mEstablishment, mService; // Layout Principal
+    TextView mTicketText, mEstablishment, mService;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -71,19 +71,19 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         // Pega instancia do Ticket
         mTicket = Ticket.getInstance();
 
-        // Seta os componentes
-        // Layout Principal
+        /*
+         * Seta os componentes com informacoes do Ticket
+         * mTicketText = Senha
+         * mEstablishment = Empresa
+         * mService = Servico
+         */
         mTicketText = (TextView) findViewById(R.id.ticket);
         mEstablishment = (TextView) findViewById(R.id.establishment);
         mService = (TextView) findViewById(R.id.service);
 
-        // Seta texto dos componentes
-        // Senha
         sTicket = mTicket.getRelacionamentoEmpSvc().getServico().getSigla() + mTicket.getNumeroTicket();
         mTicketText.setText(sTicket);
-        // Empresa
         mEstablishment.setText(mTicket.getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
-        // Servico
         mService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
@@ -123,37 +123,42 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    // Override para criar ActionBar com ActionOverflow
+    /**
+     * Metodo que gerencia a ActionBar
+     * onCreateOprionsMenu cria a ActionBar com os botoes setados na menu.main_action
+     *
+     * onOptionsItemSelected controla o clique das opcoes do menu
+      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_action, menu);
         return true;
     }
 
-    // Override para controlar os itens selecionados da ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        TextView mNavTicket, mNavService; // NavigationView
-        // NavigationView
+        TextView mNavTicket, mNavService;
+        // Seta os valores na NavigationView para display
         mNavTicket = (TextView) findViewById(R.id.nav_ticket);
         mNavService = (TextView) findViewById(R.id.nav_service);
         mNavTicket.setText(sTicket);
         mNavService.setText(mTicket.getRelacionamentoEmpSvc().getServico().getNome());
-        // Se selecionado Overflow + Opcao "Perguntas frequentes"
-        if (item.getItemId() == R.id.faq){
-            // Chama Activity FAQ
+
+        /**
+         * Validacao de controle da Opcao Selecionada
+         * FAQ: Se selecionado Overflow + Opcao "Perguntas frequentes" -> Chama a tela de FAQ
+         * Sobre: Se selecionado Overflow + Opcao "Sobre o aplicativo" -> Chama a tela Sobre
+         * mDrawerToggle: Se selecionado NavDrawer -> Abre Menu Lateral e chama método de gerencia de cliques
+         */
+        if (item.getItemId() == R.id.faq)
             startActivity(new Intent(MainLayoutActivity.this, FaqActivity.class));
-        }
-        // Se selecionado Overflow + Opcao "Sobre o aplicativo"
-        else if (item.getItemId() == R.id.about){
-            // Chama Activity Sobre
+
+        else if (item.getItemId() == R.id.about)
             startActivity(new Intent(MainLayoutActivity.this, AboutActivity.class));
-        }
-        // Se selecionado NavDrawer
-        else if (mDrawerToggle.onOptionsItemSelected(item)){
-            // Abre ou Fecha NavDrawer
+
+        else if (mDrawerToggle.onOptionsItemSelected(item))
             return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
