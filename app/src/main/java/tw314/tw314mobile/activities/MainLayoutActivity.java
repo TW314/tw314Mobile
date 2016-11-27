@@ -10,11 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -60,7 +63,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     String tag;
 
     String sTicket; // String do Ticket
-    TextView mTicketText, mEstablishment, mService;
+    TextView mTicketText, mEstablishment, mService, mTicketCount;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -72,15 +75,18 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
          * mTicketText = Senha
          * mEstablishment = Empresa
          * mService = Servico
+         * mTicketCount = Quantidade de pessoas na frente
          */
         mTicketText = (TextView) findViewById(R.id.ticket);
         mEstablishment = (TextView) findViewById(R.id.establishment);
         mService = (TextView) findViewById(R.id.service);
+        mTicketCount = (TextView) findViewById(R.id.ticket_count);
 
         sTicket = Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getSigla() + Ticket.getInstance().getNumeroTicket();
         mTicketText.setText(sTicket);
         mEstablishment.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
         mService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
+        mTicketCount.setText(PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente());
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -225,14 +231,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     }
 
     /**
-     * Metodo que recebe a contagem de pessoas na frente do Ticket do usuario
-     * Chama metodo que faz acesso ao Servico
-     */
-    private void getCountOfPeople(String accessCode){
-        getCountOfPeopleByAccessCode(accessCode);
-    }
-
-    /**
      * Metodo que mostra os AlertDialogs dependendo da opcao selecionada no menu
      * showAlertDialog recebe uma tag para definir qual Alert mostrar, realizando a acao correspondente
      *  TAG e Resultado: GiveUpTicket -> Dialog de Desistencia do Atendimento
@@ -308,8 +306,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         });
     }
 
-    private void getCountOfPeopleByAccessCode(String accessCode) {
-        // Chama o servico e faz atualizacao no WebService
+    private void getCountOfPeopleByAccessCode(String accessCode) throws IOException {
         TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
         Call<PeopleCounterReceiver> call = ticketService.getCountOfPeopleBeforeMe(accessCode);
 
@@ -317,7 +314,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             @Override
             public void onResponse(Call<PeopleCounterReceiver> call, Response<PeopleCounterReceiver> response) {
                 PeopleCounterReceiver.setPeopleCounterReceiver(response.body());
-
             }
 
             @Override

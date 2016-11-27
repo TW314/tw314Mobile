@@ -15,6 +15,7 @@ import retrofit2.Response;
 import tw314.tw314mobile.R;
 import tw314.tw314mobile.connectionHandler.ConnectionHandler;
 import tw314.tw314mobile.enums.StatusTicketEnum;
+import tw314.tw314mobile.models.PeopleCounterReceiver;
 import tw314.tw314mobile.services.TicketService;
 import tw314.tw314mobile.models.Ticket;
 
@@ -54,7 +55,7 @@ public class AccessActivity extends AppCompatActivity {
     };
 
     // Metodo de chamada do Servico de consumo
-    private void obtainTicketByAccessCode(String accessCode){
+    private void obtainTicketByAccessCode(final String accessCode) {
 
         // Cria um objeto de servico que implementa a interface de consumo
         TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
@@ -62,7 +63,7 @@ public class AccessActivity extends AppCompatActivity {
         // Chamada do WS com metodo GET da interface
         Call<Ticket> call = ticketService.getTicket(accessCode);
         // Tarefa que recebe response do WS
-        call.enqueue(new Callback<Ticket>(){
+        call.enqueue(new Callback<Ticket>() {
             // Metodo de response -> Apenas e chamado se chegou ao WS e fez retorno
             @Override
             public void onResponse(Call<Ticket> call, Response<Ticket> response) {
@@ -73,7 +74,6 @@ public class AccessActivity extends AppCompatActivity {
                 if (mTicket.getStatusTicketId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
                     // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
                     Ticket.setInstance(mTicket);
-                    startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
                 } else
                     Toast.makeText(AccessActivity.this, "Ticket indisponível para acesso. " +
                             "Verifique o código e tente novamente.", Toast.LENGTH_SHORT).show();
@@ -82,10 +82,26 @@ public class AccessActivity extends AppCompatActivity {
             // Metodo de response -> Apenas e chamado se chegou ao WS e falhou
             @Override
             public void onFailure(Call<Ticket> call, Throwable t) {
-                // TODO: Achar um jeito de voltar resposta pro usuário
                 Toast.makeText(AccessActivity.this, "Não foi possível carregar os dados da senha. " +
                         "Tente novamente.", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if (Ticket.getInstance() != null){
+            Call<PeopleCounterReceiver> peopleCounterReceiverCall = ticketService.getCountOfPeopleBeforeMe(accessCode);
+            peopleCounterReceiverCall.enqueue(new Callback<PeopleCounterReceiver>() {
+                @Override
+                public void onResponse(Call<PeopleCounterReceiver> call, Response<PeopleCounterReceiver> response) {
+                    PeopleCounterReceiver.setPeopleCounterReceiver(response.body());
+                    startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+                }
+
+                @Override
+                public void onFailure(Call<PeopleCounterReceiver> call, Throwable t) {
+
+                }
+            });
+        }
     }
+
 }

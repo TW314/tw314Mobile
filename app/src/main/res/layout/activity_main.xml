@@ -67,7 +67,6 @@
                 android:id="@+id/ticket_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ticket_count"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorAccent"

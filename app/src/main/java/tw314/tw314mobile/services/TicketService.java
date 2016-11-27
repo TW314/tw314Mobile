@@ -20,7 +20,7 @@ public interface TicketService {
     Call<Ticket> getTicket(@Path("accessCode") String accessCode);
 
     // Pega numero de pessoas na fila a frente do Ticket
-    @GET("ticket/pessoas/{accessCode")
+    @GET("ticket/pessoas/{accessCode}")
     Call<PeopleCounterReceiver> getCountOfPeopleBeforeMe(@Path("accessCode") String accessCode);
 
     // Atualiza o Ticket de acordo com o Codigo de Acesso
