@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     String sCount;
     TextView mTicketText, mEstablishment, mService, mTicketCount;
 
+    ImageView mHourglass;
+
     // Declara receptor do Socket.io
     private Socket mSocket;
     {
@@ -103,6 +106,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
         sCount = "" + PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente() + " pessoas ";
         mTicketCount.setText(sCount);
+
+        // Carregamento da Imagem para utilizacao futura
+        mHourglass = (ImageView) findViewById(R.id.hourglass);
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -337,4 +343,11 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     };
 
+    /**
+     * Metodo que faz o controle de cor da ampulheta
+     *  Ao ser chamado, valida o numero de pessoas na frente e faz a mudanca da cor
+     */
+    private void hourglassSetter(int newCounter){
+
+    }
 }
