@@ -63,6 +63,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     String tag;
 
     String sTicket; // String do Ticket
+    String sCount;
     TextView mTicketText, mEstablishment, mService, mTicketCount;
 
     @Override
@@ -86,7 +87,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mTicketText.setText(sTicket);
         mEstablishment.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
         mService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
-        mTicketCount.setText(PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente());
+        sCount = "" + PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente() + " pessoas ";
+        mTicketCount.setText(sCount);
 
         // Seta a ActionBar como sendo o layout action_bar.xml
         mToolbar = (Toolbar) findViewById(R.id.action_bar);
@@ -302,23 +304,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(MainLayoutActivity.this, "Falha ao atualizar Ticket. " +
                         "Por favor, aguarde um instante e então tente novamente.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void getCountOfPeopleByAccessCode(String accessCode) throws IOException {
-        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-        Call<PeopleCounterReceiver> call = ticketService.getCountOfPeopleBeforeMe(accessCode);
-
-        call.enqueue(new Callback<PeopleCounterReceiver>(){
-            @Override
-            public void onResponse(Call<PeopleCounterReceiver> call, Response<PeopleCounterReceiver> response) {
-                PeopleCounterReceiver.setPeopleCounterReceiver(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<PeopleCounterReceiver> call, Throwable t) {
-
             }
         });
     }
