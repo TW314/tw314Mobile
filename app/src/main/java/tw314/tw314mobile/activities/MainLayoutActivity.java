@@ -10,14 +10,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+import java.net.URISyntaxException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -66,10 +69,21 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     String sCount;
     TextView mTicketText, mEstablishment, mService, mTicketCount;
 
+    // Declara receptor do Socket.io
+    private Socket mSocket;
+    {
+        try {
+            mSocket = IO.socket("http://10.0.2.2:3000/");
+        } catch (URISyntaxException e) {}
+    }
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mSocket.on("proximo", onNewCall);
+        mSocket.connect();
 
         /*
          * Seta os componentes com informacoes do Ticket
@@ -281,9 +295,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      * Metodos de acesso ao Servido do Ticket
      * updateTicketByAccessCode recebe o codigo de acesso, atualiza o status do Ticket
      *  e chama o Servico, cancelando a espera do atendimento
-     *
-     * getCountOfPeopleBeforeMe recebe o codigo de acesso, chama o Servico e pega
-     *  a contagem de Tickets na fila antes do Ticket autenticado no aplicativo
       */
     private void updateTicketByAccessCode(String accessCode){
         // Chama o servico e faz atualizacao no WebService
@@ -307,5 +318,23 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
             }
         });
     }
+
+    /**
+     * Metodo de resposta ao Socket.io
+     *  Ativado quando o aplicativo recebe uma nova mensagem do Socket.io
+     *   Valida se Empresa e Servico chamados foram o mesmo do Ticket e responde de acordo
+     */
+    private Emitter.Listener onNewCall = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            MainLayoutActivity.this.runOnUiThread(new Runnable(){
+
+                @Override
+                public void run() {
+                    Toast.makeText(MainLayoutActivity.this, "Conectou", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    };
 
 }
