@@ -107,7 +107,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         sCount = "" + PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente() + " pessoas ";
         mTicketCount.setText(sCount);
 
-        // Carregamento da Imagem para utilizacao futura
+        // Carregamento da Imagem para atualizacao do ticket
         mHourglass = (ImageView) findViewById(R.id.hourglass);
 
         // Seta a ActionBar como sendo o layout action_bar.xml
@@ -347,7 +347,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      * Metodo que faz o controle de cor da ampulheta
      *  Ao ser chamado, valida o numero de pessoas na frente e faz a mudanca da cor
      */
-    private void hourglassSetter(int newCounter){
-
+    private void hourglassSetter(int teste){
+        // TODO: Definir como o metodo vai fazer a mudanca
     }
+
 }
