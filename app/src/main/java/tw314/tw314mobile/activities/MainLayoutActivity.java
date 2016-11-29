@@ -29,7 +29,7 @@ import tw314.tw314mobile.enums.ValidationEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
-import tw314.tw314mobile.models.PeopleCounterReceiver;
+import tw314.tw314mobile.models.PeopleCounter;
 import tw314.tw314mobile.models.Ticket;
 import tw314.tw314mobile.services.TicketService;
 
@@ -98,11 +98,11 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mService = (TextView) findViewById(R.id.service);
         mTicketCount = (TextView) findViewById(R.id.ticket_count);
 
-        sTicket = Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getSigla() + Ticket.getInstance().getNumeroTicket();
+        sTicket = Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getSigla() + Ticket.getTicket().getNumeroTicket();
         mTicketText.setText(sTicket);
-        mEstablishment.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
-        mService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
-        sCount = "" + PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente() + " pessoas ";
+        mEstablishment.setText(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
+        mService.setText(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getNome());
+        sCount = "" + PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas ";
         mTicketCount.setText(sCount);
 
         // Carregamento da Imagem para atualizacao do ticket
@@ -164,7 +164,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mNavTicket = (TextView) findViewById(R.id.nav_ticket);
         mNavService = (TextView) findViewById(R.id.nav_service);
         mNavTicket.setText(sTicket);
-        mNavService.setText(Ticket.getInstance().getRelacionamentoEmpSvc().getServico().getNome());
+        mNavService.setText(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getNome());
 
         /**
          * Validacao de controle da Opcao Selecionada
@@ -278,9 +278,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
-            if (ticketService.updateTicketByAccessCode(Ticket.getInstance().getCodigoAcesso()) == ValidationEnum.OK) {
+            if (ticketService.updateTicketByAccessCode(Ticket.getTicket().getCodigoAcesso()) == ValidationEnum.OK) {
                 // Esvazia instancia
-                Ticket.setInstance(null);
+                Ticket.setTicket(null);
                 finish();
             } else
                 Toast.makeText(MainLayoutActivity.this, "Falha ao desistir da fila.", Toast.LENGTH_SHORT).show();

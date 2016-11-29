@@ -15,11 +15,11 @@ public class Ticket {
 
     public static Ticket ticket;
 
-    public static void setInstance(Ticket ticket){
+    public static void setTicket(Ticket ticket){
         Ticket.ticket = ticket;
     }
 
-    public static Ticket getInstance(){
+    public static Ticket getTicket(){
         return ticket;
     }
 
