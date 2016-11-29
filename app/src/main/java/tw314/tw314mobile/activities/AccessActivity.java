@@ -3,26 +3,19 @@ package tw314.tw314mobile.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.connectionHandler.ConnectionHandler;
-import tw314.tw314mobile.enums.StatusTicketEnum;
-import tw314.tw314mobile.models.PeopleCounterReceiver;
+import tw314.tw314mobile.enums.ValidationEnum;
 import tw314.tw314mobile.services.TicketService;
-import tw314.tw314mobile.models.Ticket;
 
 public class AccessActivity extends AppCompatActivity {
 
     // Objeto Ticket
-    private Ticket mTicket;
+    private TicketService ticketService;
     // Atributo do botao de acesso
     private Button mAccessButton;
     // Atributo da caixa de texto do codigo
@@ -50,66 +43,17 @@ public class AccessActivity extends AppCompatActivity {
         public void onClick(View v) {
             mAccessCode = mAccessText.getText().toString();
             Toast.makeText(AccessActivity.this, "Aguarde... Carregando dados da senha...", Toast.LENGTH_SHORT).show();
-            obtainTicketByAccessCode(mAccessCode);
+            if (ticketService.obtainTicketByAccessCode(mAccessCode) == ValidationEnum.OK) {
+                startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
+            } else if (ticketService.obtainTicketByAccessCode(mAccessCode) == ValidationEnum.FAIL) {
+                Toast.makeText(AccessActivity.this, "Não foi possível carregar os dados da senha.\n" +
+                        "Tente novamente.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AccessActivity.this, "Senha indísponível para acesso.\n" +
+                        "Verifique o código e tente novamente", Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
-    // Metodo de chamada do Servico de consumo
-    private void obtainTicketByAccessCode(final String accessCode) {
-
-        // Cria um objeto de servico que implementa a interface de consumo
-        final TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-
-        // Chamada do WS com metodo GET da interface
-        Call<Ticket> call = ticketService.getTicket(accessCode);
-        // Tarefa que recebe response do WS
-        call.enqueue(new Callback<Ticket>() {
-            // Metodo de response -> Apenas e chamado se chegou ao WS e fez retorno
-            @Override
-            public void onResponse(Call<Ticket> call, Response<Ticket> response) {
-                // Objeto Ticket recebe corpo do response
-                mTicket = response.body();
-
-                // Chama MainLayoutActivity
-                if (mTicket.getStatusTicketId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
-                    // Seta instancia do objeto durante toda a aplicacao - para uso em todas as atividades
-                    Ticket.setInstance(mTicket);
-
-                    Call<PeopleCounterReceiver> peopleCounterReceiverCall = ticketService.getCountOfPeopleBeforeMe(accessCode);
-                    peopleCounterReceiverCall.enqueue(new Callback<PeopleCounterReceiver>() {
-                        @Override
-                        public void onResponse(Call<PeopleCounterReceiver> call, Response<PeopleCounterReceiver> response) {
-                            PeopleCounterReceiver.setPeopleCounterReceiver(response.body());
-
-                            if (Ticket.getInstance() != null && PeopleCounterReceiver.getPeopleCounterReceiver() != null) {
-                                Log.i("TW314", Ticket.getInstance().getCodigoAcesso());
-                                Log.i("TW314", "" + PeopleCounterReceiver.getPeopleCounterReceiver().getPessoasNaFrente());
-                                startActivity(new Intent(AccessActivity.this, MainLayoutActivity.class));
-                            } else {
-                                Toast.makeText(AccessActivity.this, "Falha no carregamento dos dados. " +
-                                        "Tente novamente.", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<PeopleCounterReceiver> call, Throwable t) {
-
-                        }
-                    });
-
-                } else
-                    Toast.makeText(AccessActivity.this, "Ticket indisponível para acesso. " +
-                            "Verifique o código e tente novamente.", Toast.LENGTH_SHORT).show();
-            }
-
-            // Metodo de response -> Apenas e chamado se chegou ao WS e falhou
-            @Override
-            public void onFailure(Call<Ticket> call, Throwable t) {
-                Toast.makeText(AccessActivity.this, "Não foi possível carregar os dados da senha. " +
-                        "Tente novamente.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 }

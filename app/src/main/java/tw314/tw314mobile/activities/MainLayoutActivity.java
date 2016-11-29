@@ -23,14 +23,9 @@ import com.github.nkzawa.socketio.client.Socket;
 
 import java.net.URISyntaxException;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import tw314.tw314mobile.R;
-import tw314.tw314mobile.connectionHandler.ConnectionHandler;
 import tw314.tw314mobile.enums.DialogTagEnum;
-import tw314.tw314mobile.enums.StatusTicketEnum;
+import tw314.tw314mobile.enums.ValidationEnum;
 import tw314.tw314mobile.fragments.ExitDialogFragment;
 import tw314.tw314mobile.fragments.GiveUpDialogFragment;
 import tw314.tw314mobile.interfaces.AlertDialogInterface;
@@ -42,7 +37,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
     /**
      * Atributos do LayoutPrincipal
-     *  mTicket: recebe instancia do Ticket
+     *  ticketService: instancia do Service do Ticket para realizar conexao com o WebService
      *
      *  mDrawerLayout: layout do menu lateral
      *  mDrawerToggle: controla abrir e fechar do menu lateral
@@ -57,6 +52,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      *  mTicketText, mEstablishment, mService: recebem dados do Ticket para mostrar na tela
      */
 
+    private TicketService ticketService;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private NavigationView mNavView;
@@ -87,6 +83,8 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
         mSocket.on("proximo", onNewCall);
         mSocket.connect();
+
+        ticketService = new TicketService();
 
         /*
          * Seta os componentes com informacoes do Ticket
@@ -260,13 +258,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
       */
     public void showAlertDialog(String tag) {
         if (tag.equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
-
-            // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new GiveUpDialogFragment();
             dialogFragment.show(getSupportFragmentManager(), tag);
         } else if (tag.equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
-
-            // Instancia o objeto Dialog e chama passando TAG para comparacao
             DialogFragment dialogFragment = new ExitDialogFragment();
             dialogFragment.show(getSupportFragmentManager(), tag);
         }
@@ -284,45 +278,23 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     @Override
     public void onDialogPositiveClick(DialogFragment dialogFragment) {
         if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.GIVE_UP_TAG)){
-            updateTicketByAccessCode(Ticket.getInstance().getCodigoAcesso());
+            if (ticketService.updateTicketByAccessCode(Ticket.getInstance().getCodigoAcesso()) == ValidationEnum.OK) {
+                // Esvazia instancia
+                Ticket.setInstance(null);
+                finish();
+            } else
+                Toast.makeText(MainLayoutActivity.this, "Falha ao desistir da fila.", Toast.LENGTH_SHORT).show();
+
+
         } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
-            navIntent = new Intent(MainLayoutActivity.this, AccessActivity.class);
-            startActivity(navIntent);
+            finish();
         }
     }
 
     @Override
     public void onDialogNegativeClick(DialogFragment dialogFragment) {
 
-    }
-
-    /**
-     * Metodos de acesso ao Servido do Ticket
-     * updateTicketByAccessCode recebe o codigo de acesso, atualiza o status do Ticket
-     *  e chama o Servico, cancelando a espera do atendimento
-      */
-    private void updateTicketByAccessCode(String accessCode){
-        // Chama o servico e faz atualizacao no WebService
-        TicketService ticketService = ConnectionHandler.obtainConnection().create(TicketService.class);
-        Ticket.getInstance().setStatusTicketId(StatusTicketEnum.CANCELADO);
-
-        Call<ResponseBody> call = ticketService.updateTicket(accessCode, Ticket.getInstance());
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                // Esvazia instancia
-                Ticket.setInstance(null);
-                // Finaliza a aplicacao
-                finish();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(MainLayoutActivity.this, "Falha ao atualizar Ticket. " +
-                        "Por favor, aguarde um instante e então tente novamente.", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     /**
