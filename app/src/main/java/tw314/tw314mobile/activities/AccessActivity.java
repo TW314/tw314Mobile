@@ -23,6 +23,7 @@ public class AccessActivity extends AppCompatActivity {
 
     // Objeto Ticket
     private Ticket mTicket;
+    private TicketService ticketService;
     private TicketInterface ticketInterface = ConnectionHandler.obtainConnection().create(TicketInterface.class);
     // Atributo do botao de acesso
     private Button mAccessButton;
