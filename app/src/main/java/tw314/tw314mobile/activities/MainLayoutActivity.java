@@ -289,11 +289,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         }
     }
 
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialogFragment) {
-
-    }
-
     /**
      * Metodo de resposta ao Socket.io
      *  Ativado quando o aplicativo recebe uma nova mensagem do Socket.io
