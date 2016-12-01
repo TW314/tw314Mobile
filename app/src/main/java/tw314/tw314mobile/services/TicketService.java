@@ -44,4 +44,27 @@ public class TicketService {
         else
             return ValidationEnum.FAIL;
     }
+
+    public int obtainPeopleCountByAccessCode(String accessCode){
+
+        Call<PeopleCounter> peopleCountCall = ticketInterface.getCountOfPeopleBeforeMe(accessCode);
+        peopleCountCall.enqueue(new Callback<PeopleCounter>() {
+            @Override
+            public void onResponse(Call<PeopleCounter> call, Response<PeopleCounter> response) {
+                PeopleCounter.setPeopleCounter(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<PeopleCounter> call, Throwable t) {
+
+            }
+        });
+
+        if (peopleCountCall.isExecuted())
+            return ValidationEnum.OK;
+        else
+            return ValidationEnum.FAIL;
+
+    }
+
 }

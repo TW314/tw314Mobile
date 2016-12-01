@@ -96,7 +96,8 @@ public class AccessActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<PeopleCounter> call, Throwable t) {
-
+                Toast.makeText(AccessActivity.this, "Falha ao carregar dados da senha.\n" +
+                        "Espere uns minutos e tente novamente.", Toast.LENGTH_SHORT).show();
             }
         });
 

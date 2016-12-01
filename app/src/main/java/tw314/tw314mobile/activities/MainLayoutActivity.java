@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,7 +73,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://10.0.2.2:3000/");
+            mSocket = IO.socket("http://192.168.0.105:3000/");
         } catch (URISyntaxException e) {}
     }
 
@@ -81,8 +82,9 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSocket.on("proximo", onNewCall);
         mSocket.connect();
+        mSocket.on("proximo", onNewCall);
+
 
         ticketService = new TicketService();
 
@@ -102,7 +104,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         mTicketText.setText(sTicket);
         mEstablishment.setText(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getRazaoSocial());
         mService.setText(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getNome());
-        sCount = "" + PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas ";
+        sCount = "" + PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas";
         mTicketCount.setText(sCount);
 
         // Carregamento da Imagem para atualizacao do ticket
@@ -198,32 +200,27 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
         // Opcoes do NavDrawer
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
+
             switch(item.getItemId()){
                 case R.id.add_ticket:
-                    // TODO: Adicionar Intent para AddTicketActivity
                 case R.id.ticket_list:
-                    // TODO: Adicionar Intent para TicketListActivity
-                    Toast.makeText(MainLayoutActivity.this, "Não disponível", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainLayoutActivity.this, "Não implementado", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.give_queue_up:
-                    tag = DialogTagEnum.GIVE_UP_TAG;
-                    showAlertDialog(tag);
+                    showAlertDialog(DialogTagEnum.GIVE_UP_TAG);
                     break;
                 case R.id.disable_notification:
-                    // TODO: Adicionar acoes para desativar notificacoes
-                    Toast.makeText(MainLayoutActivity.this, "Desativar Notificacoes selecionado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainLayoutActivity.this, "Não implementado", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.settings:
                     navIntent = new Intent(MainLayoutActivity.this, SettingsActivity.class);
                     break;
                 case R.id.exit:
-                    tag = DialogTagEnum.EXIT_TAG;
-                    showAlertDialog(tag);
+                    showAlertDialog(DialogTagEnum.EXIT_TAG);
                     break;
                 default:
                     break;
             }
-
             // Compara se Intent nao esta vazia para nao estourar excecao
             if (navIntent != null)
                 startActivity(navIntent);
@@ -304,12 +301,18 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      */
     private Emitter.Listener onNewCall = new Emitter.Listener() {
         @Override
-        public void call(Object... args) {
+        public void call(final Object... args) {
             MainLayoutActivity.this.runOnUiThread(new Runnable(){
 
                 @Override
                 public void run() {
-                    Toast.makeText(MainLayoutActivity.this, "Conectou", Toast.LENGTH_SHORT).show();
+                    String text = PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas";
+                    if (args[0].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getId())
+                            && args[1].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getId())) {
+                        if (ticketService.obtainPeopleCountByAccessCode(Ticket.getTicket().getCodigoAcesso()) == ValidationEnum.OK){
+                            mTicketCount.setText(text);
+                        }
+                    }
                 }
             });
         }
