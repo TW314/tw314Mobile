@@ -46,7 +46,6 @@ public class GiveUpDialogFragment extends DialogFragment {
                 // Seta botao de cancelamento/acao negativa
                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialogInterface, int id){
-                       alertDialogInterface.onDialogNegativeClick(GiveUpDialogFragment.this);
                    }
                });
         // Cria e retorna instancia de criacao do AlertDialog
