@@ -3,7 +3,7 @@
     <!-- Cores do Tema do App -->
     <color name="colorPrimary">#EE692E</color>
     <color name="colorPrimaryVariant">#EE4D2E</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryDark">#EE4D2E</color>
     <color name="colorAccent">#00A0C2</color>
     <color name="colorAccentVariant">#A2A2A2</color>
     <color name="colorBackground">#FFF6F6</color>

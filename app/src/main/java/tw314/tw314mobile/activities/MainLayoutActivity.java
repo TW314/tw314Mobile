@@ -73,7 +73,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://192.168.0.105:3000/");
+            mSocket = IO.socket("http://192.168.0.104:3000/");
         } catch (URISyntaxException e) {}
     }
 
