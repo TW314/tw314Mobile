@@ -1,8 +1,10 @@
 package tw314.tw314mobile.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
@@ -61,8 +63,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
     Toolbar mToolbar;
 
-    String tag;
-
     String sTicket; // String do Ticket
     String sCount;
     TextView mTicketText, mEstablishment, mService, mTicketCount;
@@ -73,7 +73,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     private Socket mSocket;
     {
         try {
-            mSocket = IO.socket("http://192.168.0.104:3000/");
+            mSocket = IO.socket("http://10.42.0.1:3000/");
         } catch (URISyntaxException e) {}
     }
 
@@ -84,7 +84,6 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
         mSocket.connect();
         mSocket.on("proximo", onNewCall);
-
 
         ticketService = new TicketService();
 
@@ -285,7 +284,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
 
         } else if (dialogFragment.getTag().equalsIgnoreCase(DialogTagEnum.EXIT_TAG)){
             // TODO: Decidir como vai ser a saida do aplicativo
-            finish();
+            onDestroy();
         }
     }
 
@@ -302,12 +301,15 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                 @Override
                 public void run() {
                     String text = PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas";
-                    if (args[0].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getId())
+                    mTicketCount.setText(text);
+                    /*if (args[0].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getId())
                             && args[1].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getId())) {
                         if (ticketService.obtainPeopleCountByAccessCode(Ticket.getTicket().getCodigoAcesso()) == ValidationEnum.OK){
-                            mTicketCount.setText(text);
+                            Vibrator vibrator = (Vibrator) getSystemService(MainLayoutActivity.VIBRATOR_SERVICE);
+                            vibrator.vibrate(500);
+
                         }
-                    }
+                    }*/
                 }
             });
         }
@@ -320,5 +322,14 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
     private void hourglassSetter(int teste){
         // TODO: Definir como o metodo vai fazer a mudanca
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+
+        mSocket.disconnect();
+        mSocket.off("proximo", onNewCall);
+    }
+
 
 }

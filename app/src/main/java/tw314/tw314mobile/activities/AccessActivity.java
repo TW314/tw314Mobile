@@ -67,7 +67,7 @@ public class AccessActivity extends AppCompatActivity {
             public void onResponse(Call<Ticket> call, Response<Ticket> response) {
                 mTicket = response.body();
                 // Valida se o ticket pode acessar o APP
-                if (mTicket.getStatusTicketId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) {
+                if ((mTicket.getStatusTicketId() == StatusTicketEnum.AGUARDANDO_ATENDIMENTO) || (mTicket.getStatusTicketId() == StatusTicketEnum.EM_ATENDIMENTO)) {
                     Ticket.setTicket(mTicket);
                     obtainPeopleCountByAccessCode(mAccessCode);
                 } else
