@@ -294,6 +294,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
      *   Valida se Empresa e Servico chamados foram o mesmo do Ticket e responde de acordo
      */
     private Emitter.Listener onNewCall = new Emitter.Listener() {
+
         @Override
         public void call(final Object... args) {
             MainLayoutActivity.this.runOnUiThread(new Runnable(){
@@ -302,6 +303,7 @@ public class MainLayoutActivity extends AppCompatActivity implements AlertDialog
                 public void run() {
                     String text = PeopleCounter.getPeopleCounter().getPessoasNaFrente() + " pessoas";
                     mTicketCount.setText(text);
+                    Log.i("TESTE", "Empresa: " + args[0] + " | Servico: " + args[1]);
                     /*if (args[0].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getEmpresa().getId())
                             && args[1].equals(Ticket.getTicket().getRelacionamentoEmpSvc().getServico().getId())) {
                         if (ticketService.obtainPeopleCountByAccessCode(Ticket.getTicket().getCodigoAcesso()) == ValidationEnum.OK){
